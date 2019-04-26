@@ -32,14 +32,14 @@ var svg = d3.select("acontent").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.tsv("data-a.tsv", function(error, data) {
+d3.csv("stock_data.csv", function(error, data) {
   data.forEach(function(d) {
-    d.date = parseDate(d.date);
-    d.val = +d.val;
+    d.Date = parseDate(d.Date);
+    d.AAPL = +d.AAPL;
   });
 
-  x.domain(d3.extent(data, function(d) { return d.date; }));
-  y.domain(d3.extent(data, function(d) { return d.val; }));
+  x.domain(d3.extent(data, function(d) { return d.Date; }));
+  y.domain(d3.extent(data, function(d) { return d.AAPL; }));
 
   svg.append("g")
       .attr("class", "x axis")
