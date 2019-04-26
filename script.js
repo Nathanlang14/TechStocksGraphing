@@ -227,12 +227,12 @@ function draw(dataFile, axisFormat){
 
 
 // Draw the chart when the page loads.
-draw("wk_prices.csv","$");
+draw("stock_data.csv","$");
 
 // Bind the draw function to our two buttons with the correct arguments.
 $("#priceBtn").click(function(){ 
-	draw("wk_prices.csv", "$" ); 
+	draw("stock_data.csv", "$" ); 
 });
 $("#changeBtn").click(function(){ 
-	draw("wk_changes.csv", "+%" ); 
+	draw("pct_change.csv", "+%" ); 
 });
