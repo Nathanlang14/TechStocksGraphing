@@ -1,0 +1,36 @@
+body {
+  font: 10px arial, sans-serif;
+}
+.btn-group{
+	float:right;
+}
+#chart{
+	width:700px;
+	margin-top: 20px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+.zeroAxis{
+	stroke:black;
+	shape-rendering: crispEdges;
+}
+.labels text{
+	font-size: 16px;
+	font-weight: bold;
+	fill:white;
+}
