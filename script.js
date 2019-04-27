@@ -219,6 +219,16 @@ function draw(dataFile, axisFormat){
 	 			x: function(d, i){return width - 20 - (42 * i) ;},
 	 			y: 5,
 	 		});
+		var mouseG = svg.append("g")
+			.attr("class", "mouse-over-effects");
+
+		mouseG.append("path") // this is the black vertical line to follow mouse
+		  .attr("class", "mouse-line")
+		  .style("stroke", "black")
+		  .style("stroke-width", "1px")
+		  .style("opacity", "0");
+		  
+    var lines = document.getElementsByClassName('line');
 
 	});
 
