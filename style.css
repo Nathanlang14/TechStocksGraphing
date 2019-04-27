@@ -34,3 +34,42 @@ body {
 	font-weight: bold;
 	fill:white;
 }
+
+.reveal-if-hardware {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+}
+
+input[type='radio']:checked ~ .reveal-if-hardware,
+input[type='checkbox']:checked ~ .reveal-if-hardware {
+    opacity: 1;
+    max-height: 100px; /* little bit of a magic number :( */
+    overflow: visible;
+}
+
+.reveal-if-software {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+}
+
+input[type='radio']:checked ~ .reveal-if-software,
+input[type='checkbox']:checked ~ .reveal-if-software {
+    opacity: 1;
+    max-height: 100px; /* little bit of a magic number :( */
+    overflow: visible;
+}
+
+.reveal-if-bigdata {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+}
+
+input[type='radio']:checked ~ .reveal-if-bigdata,
+input[type='checkbox']:checked ~ .reveal-if-bigdata {
+    opacity: 1;
+    max-height: 100px; /* little bit of a magic number :( */
+    overflow: visible;
+}
