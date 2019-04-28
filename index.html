@@ -25,85 +25,85 @@
 
         <legend>Choose stock type:</legend>
 
-        <input type="radio" name="hardware-button" id="choice-Hardware">
-        <label for="choice-Hardware">Hardware</label>
-        <div class="reveal-if-hardware">
+        <input type="radio" name="stock" id="hardware" value="1">
+        <label for="hardware" class="stock-label">Hardware</label>
+        <div class="reveal-if-hardware" id="1">
             <input type="checkbox" id="Apple-hardware" name="AAPL" value="AAPL">
             <label for="Apple-hardware" class="hardware-label">AAPL</label>
 
-            <input type='checkbox' id="IBM-hardware" name="IBM" value="IBM">
+            <input type="checkbox" id="IBM-hardware" name="IBM" value="IBM">
             <label for="IBM-hardware" class="hardware-label">IBM</label>
 
-            <input type='checkbox' id="NVDA-hardware" name="NVDA" value="NVDA">
+            <input type="checkbox" id="NVDA-hardware" name="NVDA" value="NVDA">
             <label for="NVDA-hardware" class="hardware-label">NVDA</label>
 
-            <input type='checkbox' id="AMD-hardware" name="AMD" value="AMD">
+            <input type="checkbox" id="AMD-hardware" name="AMD" value="AMD">
             <label for="AMD-hardware" class="hardware-label">AMD</label>
 
-            <input type='checkbox' id="INTL-hardware" name="INTL" value="INTL">
+            <input type="checkbox" id="INTL-hardware" name="INTL" value="INTL">
             <label for="INTL-hardware" class="hardware-label">INTL</label>
 
-            <input type='checkbox' id="MSI-hardware" name="MSI" value="MSI">
+            <input type="checkbox" id="MSI-hardware" name="MSI" value="MSI">
             <label for="MSI-hardware" class="hardware-label">MSI</label>
 
-            <input type='checkbox' id="MSFT-hardware" name="MSFT" value="MSFT">
+            <input type="checkbox" id="MSFT-hardware" name="MSFT" value="MSFT">
             <label for="MSFT-hardware" class="hardware-label">MSFT</label>
 
-            <input type='checkbox' id="MMM-hardware" name="MMM" value="MMM">
+            <input type="checkbox" id="MMM-hardware" name="MMM" value="MMM">
             <label for="MMM-hardware" class="hardware-label">MMM</label>
 
-            <input type='checkbox' id="QCOM-hardware" name="QCOM" value="QCOM">
+            <input type="checkbox" id="QCOM-hardware" name="QCOM" value="QCOM">
             <label for="QCOM-hardware" class="hardware-label">QCOM</label>
         </div>
 
-
-        <input type="radio" name="software-button" id="choice-Software">
-        <label for="choice-Software">Software</label>
-        <div class="reveal-if-software">
-            <input type='checkbox' id="MSFT-software" name="MSFT" value="MSFT">
+        <input type="radio" name="stock" id="software" value="2">
+        <label for="software" class="stock-label">Software</label>
+        <div class="reveal-if-software" id="2">
+            <input type="checkbox" id="MSFT-software" name="MSFT" value="MSFT">
             <label for="MSFT-software" class="soft-label">MSFT</label>
 
-            <input type='checkbox' id="ORCL-software" name="ORCL" value="ORCL">
+            <input type="checkbox" id="ORCL-software" name="ORCL" value="ORCL">
             <label for="ORCL-software" class="soft-label">ORCL</label>
 
-            <input type='checkbox' id="IBM-software" name="IBM" value="IBM">
+            <input type="checkbox" id="IBM-software" name="IBM" value="IBM">
             <label for="IBM-software" class="soft-label">IBM</label>
 
-            <input type='checkbox' id="SYMC-software" name="SYMC" value="SYMC">
+            <input type="checkbox" id="SYMC-software" name="SYMC" value="SYMC">
             <label for="SYMC-software" class="soft-label">SYNC</label>
 
-            <input type='checkbox' id="VMW-software" name="VMW" value="VMW">
+            <input type="checkbox" id="VMW-software" name="VMW" value="VMW">
             <label for="VMW-software" class="soft-label">VMW</label>
 
-            <input type='checkbox' id="CRM-software" name="CRM" value="CRM">
+            <input type="checkbox" id="CRM-software" name="CRM" value="CRM">
             <label for="CRM-software" class="soft-label">CRM</label>
 
-            <input type='checkbox' id="FB-software" name="FB" value="FB">
+            <input type="checkbox" id="FB-software" name="FB" value="FB">
             <label for="FB-software" class="soft-label">FB</label>
         </div>
 
-        <input type="radio" name="bigdata-button" id="choice-BigData">
-        <label for="choice-BigData">Big Data</label>
+        <input type="radio" name="stock" id="bigdata" value="3">
+        <label for="bigdata" class="stock-label">Big Data</label>
+        <div class="reveal-if-bigdata" id="3">
 
-        <div class="reveal-if-bigdata">
-
-            <input type='checkbox' id="IBM-bigdata" name="IBM" value="IBM">
+            <input type="checkbox" id="IBM-bigdata" name="IBM" value="IBM">
             <label for="IBM-bigdata" class="bigdata-label">IBM</label>
 
-            <input type='checkbox' id="ORCL-bigdata" bigdata="ORCL" value="ORCL">
+            <input type="checkbox" id="ORCL-bigdata" bigdata="ORCL" value="ORCL">
             <label for="ORCL-bigdata" class="bigdata-label">ORCL</label>
 
-            <input type='checkbox' id="SAP-bigdata" name="SAP" value="SAP">
+            <input type="checkbox" id="SAP-bigdata" name="SAP" value="SAP">
             <label for="SAP-bigdata" class="bigdata-label">SAP</label>
 
-            <input type='checkbox' id="MSFT-bigdata" name="MSFT" value="MSFT">
+            <input type="checkbox" id="MSFT-bigdata" name="MSFT" value="MSFT">
             <label for="MSFT-bigdata" class="bigdata-label">MSFT</label>
 
-            <input type='checkbox' id="TDC-bigdata" name="TDC" value="TDC">
+            <input type="checkbox" id="TDC-bigdata" name="TDC" value="TDC">
             <label for="TDC-bigdata" class="bigdata-label">TDC</label>
 
-
         </div>
+
+        <input type="reset" value="reset">
+
     </fieldset>
 </form>
 
