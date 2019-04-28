@@ -10,11 +10,6 @@ var x = d3.time.scale()
 var y = d3.scale.linear()
     .range([height, 0]);
 
-
-// Our style for this chart is to display 4-digit year for January and then 3-letter 
-// abbreviation for every other month. We can use d3's multi formatter to give us mixed
-// formatting. Check out the docs for this one: 
-// https://github.com/mbostock/d3/wiki/Time-Formatting#format_multi
 var xAxisFormat = d3.time.format.multi([
   ["%b.", function(d) { return d.getMonth(); }],
   ["%Y", function() { return true; }]
@@ -29,16 +24,9 @@ var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left");
 
-// Color scales work just like other d3 scales in that they map
-// a domain of data values to a range of discrete colors.
-// https://github.com/mbostock/d3/wiki/Ordinal-Scales#category10
 var color = d3.scale.category10();
 
 var line = d3.svg.line()
-	// We're going to "interpolate"/draw a "spline"/curve which will smooth the line a bit. 
-	// A "cardinal" spline gives us a little smoothing without diminishing 
-	// our peaks and troughs.
-	// https://github.com/mbostock/d3/wiki/SVG-Shapes#line_interpolate
 	.interpolate("cardinal") 
     .x(function(d) { return x(d.date); })
     .y(function(d) { return y(d.price); });
@@ -56,7 +44,6 @@ svg.append("g")
 svg.append("g")
 	  .attr("class", "y axis");
 
-// An axis line at zero on the Y axis.
 svg.append("line")
 	.attr("class","zeroAxis");
 
@@ -68,9 +55,6 @@ svg.append("text")
 		y:height + 30
 	});
 
-
-
-
 // Whenever we want to make a d3 chart update with new data, we need to put the
 // elements of our chart that are going to change with the new data into a function.
 // That way we can simply call it to redraw these elements.
@@ -79,19 +63,9 @@ svg.append("text")
 
 function draw(dataFile, axisFormat){
 
-
-	// Because our data is changeing type (from a share price in dollars to a percentage)
-	// we need to reformat our yAxis. In our draw function we're passing a d3 format string:
-	// https://github.com/mbostock/d3/wiki/Formatting
 	yAxis.tickFormat(d3.format(axisFormat));
-
-
-	// d3 has special methods for dealing with data in comma-delimited files, CSVs.
-	// In this case, we have two CSVs with different data but which we want to share
-	// the same chart, so we're passing the filename as an argument to the draw func. 
-	// https://github.com/mbostock/d3/wiki/CSV
+	
 	d3.csv(dataFile, function(error, data) {
-
 
 	  // Our color scale domain is going to be the values in the header row of our CSV,
 	  // excluding the "date" column.
@@ -100,6 +74,11 @@ function draw(dataFile, axisFormat){
 	  data.forEach(function(d) {
 	    d.date = parseDate(d.date);
 	  });
+	  var cutoffDate = new Date();
+	  cutoffDate.setDate(cutoffDate.getDate() - 90);
+	  data = data.filter(function(d) {
+			return d.date > cutoffDate;
+	  })
 
 
 	  // Since we'll have multiple companies in our data, we need to create a data array 
