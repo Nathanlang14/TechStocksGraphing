@@ -96,7 +96,7 @@ function draw(dataFile, axisFormat){
 	  data.forEach(function(d) {
 	    d.date = parseDate(d.date);
 	  });
-	  var cutoffDate = new Date();
+	  var cutoffDate = new Date(2019,4,2);
 	  cutoffDate.setDate(cutoffDate.getDate() - 90);
 	  data = data.filter(function(d) {
 			return d.date > cutoffDate;
