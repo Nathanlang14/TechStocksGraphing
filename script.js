@@ -39,7 +39,7 @@ var xAxisFormat = d3.time.format.multi([
 var xAxis = d3.svg.axis()
     .scale(x)
     //.tickFormat( xAxisFormat )
-	.tickFormat(multiFormat);
+    .tickFormat(multiFormat)
     .orient("bottom");
 
 var yAxis = d3.svg.axis()
