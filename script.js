@@ -21,12 +21,12 @@ var formatMillisecond = d3.time.format(".%L"),
 
 // Define filter conditions
 function multiFormat(date) {
-  return (d3.timeSecond(date) < date ? formatMillisecond
-    : d3.timeMinute(date) < date ? formatSecond
-    : d3.timeHour(date) < date ? formatMinute
-    : d3.timeDay(date) < date ? formatHour
-    : d3.timeMonth(date) < date ? (d3.timeWeek(date) < date ? formatDay : formatWeek)
-    : d3.timeYear(date) < date ? formatMonth
+  return (d3.time.Second(date) < date ? formatMillisecond
+    : d3.time.Minute(date) < date ? formatSecond
+    : d3.time.Hour(date) < date ? formatMinute
+    : d3.time.Day(date) < date ? formatHour
+    : d3.time.Month(date) < date ? (d3.time.Week(date) < date ? formatDay : formatWeek)
+    : d3.time.Year(date) < date ? formatMonth
     : formatYear)(date);
 }
 
