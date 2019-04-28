@@ -10,14 +10,14 @@ var x = d3.time.scale()
 var y = d3.scale.linear()
     .range([height, 0]);
 	
-var formatMillisecond = d3.timeFormat(".%L"),
-    formatSecond = d3.timeFormat(":%S"),
-    formatMinute = d3.timeFormat("%I:%M"),
-    formatHour = d3.timeFormat("%I %p"),
-    formatDay = d3.timeFormat("%a %d"),
-    formatWeek = d3.timeFormat("%b %d"),
-    formatMonth = d3.timeFormat("%B"),
-    formatYear = d3.timeFormat("%Y");
+var formatMillisecond = d3.time.format(".%L"),
+    formatSecond = d3.time.format(":%S"),
+    formatMinute = d3.time.format("%I:%M"),
+    formatHour = d3.time.format("%I %p"),
+    formatDay = d3.time.format("%a %d"),
+    formatWeek = d3.time.format("%b %d"),
+    formatMonth = d3.time.format("%B"),
+    formatYear = d3.time.format("%Y");
 
 // Define filter conditions
 function multiFormat(date) {
@@ -39,7 +39,7 @@ var xAxisFormat = d3.time.format.multi([
 var xAxis = d3.svg.axis()
     .scale(x)
     //.tickFormat( xAxisFormat )
-    .tickFormat(multiFormat)
+	.tickFormat(multiFormat)
     .orient("bottom");
 
 var yAxis = d3.svg.axis()
