@@ -38,13 +38,12 @@ body {
 .reveal-if-hardware {
     opacity: 0;
     max-height: 0;
-    overflow: hidden;
+   overflow: hidden;
 }
 
-input[type='radio']:checked ~ .reveal-if-hardware,
-input[type='checkbox']:checked ~ .reveal-if-hardware {
+input[value="1"]:checked ~ div[id="1"]{
     opacity: 1;
-    max-height: 100px; /* little bit of a magic number :( */
+    max-height: 100px;
     overflow: visible;
 }
 
@@ -54,10 +53,9 @@ input[type='checkbox']:checked ~ .reveal-if-hardware {
     overflow: hidden;
 }
 
-input[type='radio']:checked ~ .reveal-if-software,
-input[type='checkbox']:checked ~ .reveal-if-software {
+input[value="2"]:checked ~ div[id="2"]{
     opacity: 1;
-    max-height: 100px; /* little bit of a magic number :( */
+    max-height: 100px;
     overflow: visible;
 }
 
@@ -67,9 +65,8 @@ input[type='checkbox']:checked ~ .reveal-if-software {
     overflow: hidden;
 }
 
-input[type='radio']:checked ~ .reveal-if-bigdata,
-input[type='checkbox']:checked ~ .reveal-if-bigdata {
+input[value="3"]:checked ~ div[id="3"]{
     opacity: 1;
-    max-height: 100px; /* little bit of a magic number :( */
+    max-height: 100px;
     overflow: visible;
 }
