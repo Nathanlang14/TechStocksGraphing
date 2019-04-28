@@ -97,7 +97,7 @@ function draw(dataFile, axisFormat){
 	    d.date = parseDate(d.date);
 	  });
 	  var cutoffDate = new Date();
-	  cutoffDate.setDate(cutoffDate.getDate() - 7);
+	  cutoffDate.setDate(cutoffDate.getDate() - 90);
 	  data = data.filter(function(d) {
 			return d.date > cutoffDate;
 	  })
