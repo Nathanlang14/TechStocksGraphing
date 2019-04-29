@@ -126,11 +126,12 @@ function draw(dataFile, axisFormat){
 	    .attr('class', 'app-button')
 	    .html(function(d) { return d.name; })
 	    .on('click', function(d) {
-	      curr_data = d.data;
+	      data = d.data;
 	      updateChart();
 	    });
 		
-	  function updateChart(){console.log("WORK");}
+	  function updateChart(){
+		  
 
 	  // Our color scale domain is going to be the values in the header row of our CSV,
 	  // excluding the "date" column.
@@ -328,9 +329,11 @@ function draw(dataFile, axisFormat){
 	 		});
 			
 
+	  }
+	
+	data = data_1y;
+    updateChart();
 	});
-
-
 }
 
 
