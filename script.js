@@ -92,22 +92,22 @@ function draw(dataFile, axisFormat){
 		data.forEach(function(d) {
 			d.date = parseDate(d.date);
 		});
-	  var cutoffDate = new Date(2019,4,2);	  
+	  var cutoffDate = new Date(2019,3,2);	  
 	  cutoffDate.setDate(cutoffDate.getDate() - 7);
 	  data_1w = data.filter(function(d) {return d.date > cutoffDate;})
-	  cutoffDate = new Date(2019,4,2);
+	  cutoffDate = new Date(2019,3,2);
 	  cutoffDate.setDate(cutoffDate.getDate() - 30);
 	  data_1m = data.filter(function(d) {return d.date > cutoffDate;})
-	  cutoffDate = new Date(2019,4,2);
+	  cutoffDate = new Date(2019,3,2);
 	  cutoffDate.setDate(cutoffDate.getDate() - 90);
 	  data_3m = data.filter(function(d) {return d.date > cutoffDate;})
-	  cutoffDate = new Date(2019,4,2);
+	  cutoffDate = new Date(2019,3,2);
 	  cutoffDate.setDate(cutoffDate.getDate() - 180);
 	  data_6m = data.filter(function(d) {return d.date > cutoffDate;})
-	  cutoffDate = new Date(2019,4,2);
+	  cutoffDate = new Date(2019,3,2);
 	  cutoffDate.setDate(cutoffDate.getDate() - 270);
 	  data_9m = data.filter(function(d) {return d.date > cutoffDate;})
-	  cutoffDate = new Date(2019,4,2);
+	  cutoffDate = new Date(2019,3,2);
 	  cutoffDate.setDate(cutoffDate.getDate() - 360);
 	  data_1y = data.filter(function(d) {return d.date > cutoffDate;})
 		
