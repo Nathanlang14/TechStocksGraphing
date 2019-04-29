@@ -145,7 +145,7 @@ function draw(dataFile, axisFormat){
 	      updateChart();
 	    });
 		
-	  updateChart(){console.log("WORK");};
+	  function updateChart(){console.log("WORK");}
 	  // Our color scale domain is going to be the values in the header row of our CSV,
 	  // excluding the "date" column.
 	  color.domain( d3.keys( data[0] ).filter( function(key) { return key !== "date"; }) );
