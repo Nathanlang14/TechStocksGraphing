@@ -7,6 +7,7 @@ d3.selectAll(".hardware-label").on("change", saveHard);
 				checkArrHardware.push(cb.property("value"));		
 			}
 		});
+		console.log(checkArrHardware);
 		return checkArrHardware;
 	}	
 	d3.selectAll(".soft-label").on("change", saveSoft);
@@ -19,6 +20,7 @@ d3.selectAll(".hardware-label").on("change", saveHard);
 				checkArrSoftware.push(cb.property("value"));
 			}
 		});
+		console.log(checkArrSoftware);
 		return checkArrSoftware;
 	}
 	d3.selectAll(".bigdata-label").on("change", saveBig);
@@ -32,6 +34,7 @@ d3.selectAll(".hardware-label").on("change", saveHard);
 			}
 			
 		});
+		console.log(checkArrBigdata);
 		return checkArrBigdata;
 	}
 
