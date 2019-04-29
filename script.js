@@ -1,43 +1,3 @@
-d3.selectAll(".hardware-label").on("change", saveHard);
-	function saveHard() {
-		var checkArrHardware = [];
-		d3.selectAll(".hardware-label").each(function(d) {
-			cb = d3.select(this);
-			if (cb.property("checked")) {
-				checkArrHardware.push(cb.property("value"));		
-			}
-		});
-		console.log(checkArrHardware);
-		return checkArrHardware;
-	}	
-	d3.selectAll(".soft-label").on("change", saveSoft);
-	saveSoft();
-	function saveSoft() {
-		var checkArrSoftware = [];
-		d3.selectAll(".soft-label").each(function(d) {
-			cb = d3.select(this);
-			if (cb.property("checked")) {
-				checkArrSoftware.push(cb.property("value"));
-			}
-		});
-		console.log(checkArrSoftware);
-		return checkArrSoftware;
-	}
-	d3.selectAll(".bigdata-label").on("change", saveBig);
-	saveBig();
-	function saveBig() {
-		var checkArrBigdata = [];
-		d3.selectAll(".bigdata-label").each(function(d) {
-			cb = d3.select(this);
-			if (cb.property("checked")) {
-				checkArrBigdata.push(cb.property("value"));
-			}
-			
-		});
-		console.log(checkArrBigdata);
-		return checkArrBigdata;
-	}
-
 var margin = {top: 20, right: 20, bottom: 35, left: 50},
     width = 900 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
@@ -127,12 +87,37 @@ function draw(dataFile, axisFormat){
 
 	yAxis.tickFormat(d3.format(axisFormat));
 	
+	
 	d3.csv(dataFile, function(error, data) {
-
-	     var all_data = [
-	    { 'name': 'daily', 'data': data},
-	    { 'name': 'weekly', 'data': data},
-	    { 'name': 'monthly', 'data': data}
+		data.forEach(function(d) {
+			d.date = parseDate(d.date);
+		});
+	  var cutoffDate = new Date(2019,4,2);	  
+	  cutoffDate.setDate(cutoffDate.getDate() - 7);
+	  data_1w = data.filter(function(d) {return d.date > cutoffDate;})
+	  cutoffDate = new Date(2019,4,2);
+	  cutoffDate.setDate(cutoffDate.getDate() - 30);
+	  data_1m = data.filter(function(d) {return d.date > cutoffDate;})
+	  cutoffDate = new Date(2019,4,2);
+	  cutoffDate.setDate(cutoffDate.getDate() - 90);
+	  data_3m = data.filter(function(d) {return d.date > cutoffDate;})
+	  cutoffDate = new Date(2019,4,2);
+	  cutoffDate.setDate(cutoffDate.getDate() - 180);
+	  data_6m = data.filter(function(d) {return d.date > cutoffDate;})
+	  cutoffDate = new Date(2019,4,2);
+	  cutoffDate.setDate(cutoffDate.getDate() - 270);
+	  data_9m = data.filter(function(d) {return d.date > cutoffDate;})
+	  cutoffDate = new Date(2019,4,2);
+	  cutoffDate.setDate(cutoffDate.getDate() - 360);
+	  data_1y = data.filter(function(d) {return d.date > cutoffDate;})
+		
+		var all_data = [
+	    { 'name': '1 week', 'data': data_1w},
+	    { 'name': '1 month', 'data': data_1m},
+		{ 'name': '3 month', 'data': data_3m},
+		{ 'name': '6 month', 'data': data_6m},
+		{ 'name': '9 month', 'data': data_9m},
+		{ 'name': '1 year', 'data': data_1y}
 	    ];
 
 	  d3.select('.button-area').selectAll('.app-button')
@@ -146,18 +131,10 @@ function draw(dataFile, axisFormat){
 	    });
 		
 	  function updateChart(){console.log("WORK");}
+
 	  // Our color scale domain is going to be the values in the header row of our CSV,
 	  // excluding the "date" column.
 	  color.domain( d3.keys( data[0] ).filter( function(key) { return key !== "date"; }) );
-
-	  data.forEach(function(d) {
-	    d.date = parseDate(d.date);
-	  });
-	  var cutoffDate = new Date(2019,4,2);
-	  cutoffDate.setDate(cutoffDate.getDate() - 90);
-	  data = data.filter(function(d) {
-			return d.date > cutoffDate;
-	  })
 
 
 	  // Since we'll have multiple companies in our data, we need to create a data array 
