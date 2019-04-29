@@ -129,6 +129,23 @@ function draw(dataFile, axisFormat){
 	
 	d3.csv(dataFile, function(error, data) {
 
+	     var all_data = [
+	    { 'name': 'daily', 'data': data},
+	    { 'name': 'weekly', 'data': data},
+	    { 'name': 'monthly', 'data': data}
+	    ];
+
+	  d3.select('.button-area').selectAll('.app-button')
+	    .data(all_data)
+	    .enter().append('button')
+	    .attr('class', 'app-button')
+	    .html(function(d) { return d.name; })
+	    .on('click', function(d) {
+	      curr_data = d.data;
+	      updateChart();
+	    });
+		
+	  updateChart(){console.log("WORK");};
 	  // Our color scale domain is going to be the values in the header row of our CSV,
 	  // excluding the "date" column.
 	  color.domain( d3.keys( data[0] ).filter( function(key) { return key !== "date"; }) );
