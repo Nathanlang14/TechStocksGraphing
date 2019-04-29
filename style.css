@@ -35,6 +35,16 @@ body {
 	fill:white;
 }
 
+.button-area {
+  padding: 40px 0 0 30px;
+  float: left;
+}
+
+.app-button {
+  display: block;
+  margin-bottom: 3px;
+}
+
 .reveal-if-hardware {
     opacity: 0;
     max-height: 0;
