@@ -41,8 +41,6 @@ function initializeGraph(){
 	width = 900 - margin.left - margin.right,
 	height = 500 - margin.top - margin.bottom;
 
-	var parseDate = d3.time.format("%Y-%m-%d").parse;
-
 	var x = d3.time.scale()
 		.range([0, width]);
 
@@ -127,15 +125,18 @@ function initializeGraph(){
 function changer( arr ){
 	console.log(arr);
 	function draw(dataFile, axisFormat){
+
+		yAxis.tickFormat(d3.format(axisFormat));
+		
 		
 		d3.csv(dataFile, function(error, data) {
+			var parseDate = d3.time.format("%Y-%m-%d").parse;
 			data.forEach(function(d) {
 				d.date = parseDate(d.date);
 			});
 			
 			
 		initializeGraph();
-		yAxis.tickFormat(d3.format(axisFormat));
 			
 		  var cutoffDate = new Date(2019,3,2);	  
 		  cutoffDate.setDate(cutoffDate.getDate() - 7);
