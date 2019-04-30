@@ -175,7 +175,9 @@ function draw(dataFile, axisFormat){
 
 	  // Our color scale domain is going to be the values in the header row of our CSV,
 	  // excluding the "date" column.
-	  color.domain( d3.keys( data[0] ).filter( function(key) { return key !== "date"; }) );
+	var abc = d3.keys( data[0] ).filter( function(key) { return key !== "date"; });
+		  console.log(abc);
+	  color.domain( abc );
 
 
 	  // Since we'll have multiple companies in our data, we need to create a data array 
@@ -189,8 +191,6 @@ function draw(dataFile, axisFormat){
 	      })
 	    };
 	  });
-		  var tokeep = ["AAPL", "NVDA"];
-		data.filter(function(d,i){ return tokeep.indexOf(d.name) >= 0 })
 	  
 	  var mouseG = svg.append("g")
 		  .attr("class", "mouse-over-effects");
