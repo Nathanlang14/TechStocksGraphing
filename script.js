@@ -1,44 +1,3 @@
-d3.selectAll(".hardware-label").on("change", saveHard);
-saveHard();
-function saveHard() {
-	var checkArrHardware = [];
-	d3.selectAll(".hardware-label").each(function(d) {
-		cb = d3.select(this);
-		if (cb.property("checked")) {
-			checkArrHardware.push(cb.property("value"));		
-		}
-	});
-	console.log(checkArrHardware);
-	return checkArrHardware;
-}	
-d3.selectAll(".soft-label").on("change", saveSoft);
-saveSoft();
-function saveSoft() {
-	var checkArrSoftware = [];
-	d3.selectAll(".soft-label").each(function(d) {
-		cb = d3.select(this);
-		if (cb.property("checked")) {
-			checkArrSoftware.push(cb.property("value"));
-		}
-	});
-	console.log(checkArrSoftware);
-	return checkArrSoftware;
-}
-d3.selectAll(".bigdata-label").on("change", saveBig);
-saveBig();
-function saveBig() {
-	var checkArrBigdata = [];
-	d3.selectAll(".bigdata-label").each(function(d) {
-		cb = d3.select(this);
-		if (cb.property("checked")) {
-			checkArrBigdata.push(cb.property("value"));
-		}
-		
-	});
-	console.log(checkArrBigdata);
-	return checkArrBigdata;
-}
-
 var margin = {top: 20, right: 20, bottom: 35, left: 50},
 width = 900 - margin.left - margin.right,
 height = 500 - margin.top - margin.bottom;
@@ -125,6 +84,45 @@ svg.append("text")
 // our data.
 
 function draw(dataFile, axisFormat){
+	
+	d3.selectAll(".hardware-label").on("change", saveHard);
+saveHard();
+function saveHard() {
+	var checkArrHardware = [];
+	d3.selectAll(".hardware-label").each(function(d) {
+		cb = d3.select(this);
+		if (cb.property("checked")) {
+			checkArrHardware.push(cb.property("value"));		
+		}
+	});
+	return checkArrHardware;
+}	
+d3.selectAll(".soft-label").on("change", saveSoft);
+saveSoft();
+function saveSoft() {
+	var checkArrSoftware = [];
+	d3.selectAll(".soft-label").each(function(d) {
+		cb = d3.select(this);
+		if (cb.property("checked")) {
+			checkArrSoftware.push(cb.property("value"));
+		}
+	});
+	return checkArrSoftware;
+}
+d3.selectAll(".bigdata-label").on("change", saveBig);
+saveBig();
+function saveBig() {
+	var checkArrBigdata = [];
+	d3.selectAll(".bigdata-label").each(function(d) {
+		cb = d3.select(this);
+		if (cb.property("checked")) {
+			checkArrBigdata.push(cb.property("value"));
+		}
+		
+	});
+	return checkArrBigdata;
+}
+	console.log(checkArrHardware);
 
 	yAxis.tickFormat(d3.format(axisFormat));
 	
