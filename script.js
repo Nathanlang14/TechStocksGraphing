@@ -176,8 +176,7 @@ function draw(dataFile, axisFormat){
 	  // Our color scale domain is going to be the values in the header row of our CSV,
 	  // excluding the "date" column.
 	var abc = d3.keys( data[0] ).filter( function(key) { return key !== "date"; });
-		  console.log(abc);
-	  color.domain( abc );
+	  color.domain( ["AAPL","NVDA"] );
 
 
 	  // Since we'll have multiple companies in our data, we need to create a data array 
