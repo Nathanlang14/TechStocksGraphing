@@ -1,5 +1,5 @@
 d3.selectAll(".hardware-label").on("change", saveHard);
-var hard = saveHard();
+var hard;
 function saveHard() {
 	var checkArrHardware = [];
 	d3.selectAll(".hardware-label").each(function(d) {
@@ -8,6 +8,7 @@ function saveHard() {
 			checkArrHardware.push(cb.property("value"));		
 		}
 	});
+	hard = checkArrHardware;
 	return checkArrHardware;
 }	
 d3.selectAll(".soft-label").on("change", saveSoft);
