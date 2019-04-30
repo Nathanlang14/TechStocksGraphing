@@ -30,7 +30,7 @@ body {
 	shape-rendering: crispEdges;
 }
 .labels text{
-	font-size: 14px;
+	font-size: 10px;
 	font-weight: bold;
 	fill:white;
 }
