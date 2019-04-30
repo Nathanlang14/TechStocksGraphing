@@ -4,6 +4,42 @@ body {
 .btn-group{
 	float:right;
 }
+.reveal-hardware {
+    opacity: 0;
+    max-height: 0;
+   overflow: hidden;
+}
+
+input[value="1"]:checked ~ div[id="1"]{
+    opacity: 1;
+    max-height: 100px;
+    overflow: visible;
+}
+
+.reveal-software {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+}
+
+input[value="2"]:checked ~ div[id="2"]{
+    opacity: 1;
+    max-height: 100px;
+    overflow: visible;
+}
+
+.reveal-bigdata {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+}
+
+input[value="3"]:checked ~ div[id="3"]{
+    opacity: 1;
+    max-height: 100px;
+    overflow: visible;
+}
+
 #chart{
 	width:700px;
 	margin-top: 20px;
@@ -43,40 +79,4 @@ body {
 .app-button {
   display: inline-block;
   margin-bottom: 3px;
-}
-
-.reveal-if-hardware {
-    opacity: 0;
-    max-height: 0;
-   overflow: hidden;
-}
-
-input[value="1"]:checked ~ div[id="1"]{
-    opacity: 1;
-    max-height: 100px;
-    overflow: visible;
-}
-
-.reveal-if-software {
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
-}
-
-input[value="2"]:checked ~ div[id="2"]{
-    opacity: 1;
-    max-height: 100px;
-    overflow: visible;
-}
-
-.reveal-if-bigdata {
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
-}
-
-input[value="3"]:checked ~ div[id="3"]{
-    opacity: 1;
-    max-height: 100px;
-    overflow: visible;
 }
