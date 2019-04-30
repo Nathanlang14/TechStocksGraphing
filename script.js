@@ -7,7 +7,7 @@ function saveHard() {
 			checkArrHardware.push(cb.property("value"));		
 		}
 	});
-	updateChart(checkArrHardware);
+	changer(checkArrHardware);
 	return checkArrHardware;
 }	
 d3.selectAll(".soft-label").on("change", saveSoft);
@@ -19,7 +19,7 @@ function saveSoft() {
 			checkArrSoftware.push(cb.property("value"));
 		}
 	});
-	updateChart(checkArrSoftware);
+	changer(checkArrSoftware);
 	return checkArrSoftware;
 }
 d3.selectAll(".bigdata-label").on("change", saveBig);
@@ -32,7 +32,7 @@ function saveBig() {
 		}
 		
 	});
-	updateChart(checkArrBigdata);
+	changer(checkArrBigdata);
 	return checkArrBigdata;
 }
 
