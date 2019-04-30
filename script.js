@@ -1,41 +1,3 @@
-d3.selectAll(".hardware-label").on("change", saveHard);
-function saveHard() {
-	var checkArrHardware = [];
-	d3.selectAll(".hardware-label").each(function(d) {
-		cb = d3.select(this);
-		if (cb.property("checked")) {
-			checkArrHardware.push(cb.property("value"));		
-		}
-	});
-	changer(checkArrHardware);
-	return checkArrHardware;
-}	
-d3.selectAll(".soft-label").on("change", saveSoft);
-function saveSoft() {
-	var checkArrSoftware = [];
-	d3.selectAll(".soft-label").each(function(d) {
-		cb = d3.select(this);
-		if (cb.property("checked")) {
-			checkArrSoftware.push(cb.property("value"));
-		}
-	});
-	changer(checkArrSoftware);
-	return checkArrSoftware;
-}
-d3.selectAll(".bigdata-label").on("change", saveBig);
-function saveBig() {
-	var checkArrBigdata = [];
-	d3.selectAll(".bigdata-label").each(function(d) {
-		cb = d3.select(this);
-		if (cb.property("checked")) {
-			checkArrBigdata.push(cb.property("value"));
-		}
-		
-	});
-	changer(checkArrBigdata);
-	return checkArrBigdata;
-}
-
 var margin = {top: 20, right: 20, bottom: 35, left: 50},
 width = 900 - margin.left - margin.right,
 height = 500 - margin.top - margin.bottom;
@@ -121,8 +83,6 @@ svg.append("text")
 // In our case, those elements will be the axes, lines and labels, all of which depend
 // our data.
 
-function changer( arr ){
-
 	function draw(dataFile, axisFormat){
 
 		yAxis.tickFormat(d3.format(axisFormat));
@@ -176,7 +136,7 @@ function changer( arr ){
 		  // Our color scale domain is going to be the values in the header row of our CSV,
 		  // excluding the "date" column.
 		  
-		  color.domain( arr );
+		  color.domain( ["AAPL"] );
 
 
 		  // Since we'll have multiple companies in our data, we need to create a data array 
@@ -388,4 +348,3 @@ function changer( arr ){
 	$("#changeBtn").click(function(){ 
 		draw("pct_change.csv", "+%" ); 
 	});
-}
