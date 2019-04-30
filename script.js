@@ -189,6 +189,8 @@ function draw(dataFile, axisFormat){
 	      })
 	    };
 	  });
+		  var tokeep = ["AAPL", "NVDA"];
+		data.filter(function(d,i){ return tokeep.indexOf(d.name) >= 0 })
 	  
 	  var mouseG = svg.append("g")
 		  .attr("class", "mouse-over-effects");
