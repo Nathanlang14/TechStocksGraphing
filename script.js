@@ -7,7 +7,7 @@ function saveHard() {
 			checkArrHardware.push(cb.property("value"));		
 		}
 	});
-	console.log(checkArrHardware);
+	changer(checkArrHardware);
 	return checkArrHardware;
 }	
 d3.selectAll(".soft-label").on("change", saveSoft);
@@ -19,7 +19,7 @@ function saveSoft() {
 			checkArrSoftware.push(cb.property("value"));
 		}
 	});
-	console.log(checkArrSoftware);
+	changer(checkArrSoftware);
 	return checkArrSoftware;
 }
 d3.selectAll(".bigdata-label").on("change", saveBig);
@@ -32,7 +32,7 @@ function saveBig() {
 		}
 		
 	});
-	console.log(checkArrBigdata);
+	changer(checkArrBigdata);
 	return checkArrBigdata;
 }
 
@@ -121,267 +121,271 @@ svg.append("text")
 // In our case, those elements will be the axes, lines and labels, all of which depend
 // our data.
 
-function draw(dataFile, axisFormat){
+function changer( arr ){
+	console.log(arr);
+	function draw(dataFile, axisFormat){
 
-	yAxis.tickFormat(d3.format(axisFormat));
-	
-	d3.csv(dataFile, function(error, data) {
-		data.forEach(function(d) {
-			d.date = parseDate(d.date);
-		});
-	  var cutoffDate = new Date(2019,3,2);	  
-	  cutoffDate.setDate(cutoffDate.getDate() - 7);
-	  data_1w = data.filter(function(d) {return d.date > cutoffDate;})
-	  cutoffDate = new Date(2019,3,2);
-	  cutoffDate.setDate(cutoffDate.getDate() - 30);
-	  data_1m = data.filter(function(d) {return d.date > cutoffDate;})
-	  cutoffDate = new Date(2019,3,2);
-	  cutoffDate.setDate(cutoffDate.getDate() - 90);
-	  data_3m = data.filter(function(d) {return d.date > cutoffDate;})
-	  cutoffDate = new Date(2019,3,2);
-	  cutoffDate.setDate(cutoffDate.getDate() - 180);
-	  data_6m = data.filter(function(d) {return d.date > cutoffDate;})
-	  cutoffDate = new Date(2019,3,2);
-	  cutoffDate.setDate(cutoffDate.getDate() - 270);
-	  data_9m = data.filter(function(d) {return d.date > cutoffDate;})
-	  cutoffDate = new Date(2019,3,2);
-	  cutoffDate.setDate(cutoffDate.getDate() - 360);
-	  data_1y = data.filter(function(d) {return d.date > cutoffDate;})
+		yAxis.tickFormat(d3.format(axisFormat));
 		
-		var all_data = [
-	    { 'name': '1 week', 'data': data_1w},
-	    { 'name': '1 month', 'data': data_1m},
-		{ 'name': '3 month', 'data': data_3m},
-		{ 'name': '6 month', 'data': data_6m},
-		{ 'name': '9 month', 'data': data_9m},
-		{ 'name': '1 year', 'data': data_1y}
-	    ];
-
-	  d3.select('.button-area').selectAll('.app-button')
-	    .data(all_data)
-	    .enter().append('button')
-	    .attr('class', 'app-button')
-	    .html(function(d) { return d.name; })
-	    .on('click', function(d) {
-	      data = d.data;
-	      updateChart();
-	    });
 		
-	  function updateChart(){
-		  
-
-	  // Our color scale domain is going to be the values in the header row of our CSV,
-	  // excluding the "date" column.
-	var abc = d3.keys( data[0] ).filter( function(key) { return key !== "date"; });
-	  color.domain( ["AAPL","NVDA"] );
-
-
-	  // Since we'll have multiple companies in our data, we need to create a data array 
-	  // that has multiple objects, one for AHC and one for NWS. We'll use javascript's map
-	  // function to relate all the price and date data to their respective companies.
-	  var companies = color.domain().map(function(name) {
-	    return {
-	      name: name,
-	      values: data.map(function(d) {
-	        return {date: d.date, price: +d[name]};
-	      })
-	    };
-	  });
-	  
-	  var mouseG = svg.append("g")
-		  .attr("class", "mouse-over-effects");
-
-		mouseG.append("path") // this is the black vertical line to follow mouse
-		  .attr("class", "mouse-line")
-		  .style("stroke", "black")
-		  .style("stroke-width", "1px")
-		  .style("opacity", "0");
-		  
-		var lines = document.getElementsByClassName('line');
-
-		var mousePerLine = mouseG.selectAll('.mouse-per-line')
-		  .data(companies)
-		  .enter()
-		  .append("g")
-		  .attr("class", "mouse-per-line");
-
-		mousePerLine.append("circle")
-		  .attr("r", 7)
-		  .style("stroke", function(d) {
-			return color(d.name);
-		  })
-		  .style("fill", "none")
-		  .style("stroke-width", "1px")
-		  .style("opacity", "0");
-
-		mousePerLine.append("text")
-		  .attr("transform", "translate(10,3)");
-
-		mouseG.append('svg:rect') // append a rect to catch mouse movements on canvas
-		  .attr('width', width) // can't catch mouse events on a g element
-		  .attr('height', height)
-		  .attr('fill', 'none')
-		  .attr('pointer-events', 'all')
-		  .on('mouseout', function() { // on mouse out hide line, circles and text
-			d3.select(".mouse-line")
-			  .style("opacity", "0");
-			d3.selectAll(".mouse-per-line circle")
-			  .style("opacity", "0");
-			d3.selectAll(".mouse-per-line text")
-			  .style("opacity", "0");
-		  })
-		  .on('mouseover', function() { // on mouse in show line, circles and text
-			d3.select(".mouse-line")
-			  .style("opacity", "1");
-			d3.selectAll(".mouse-per-line circle")
-			  .style("opacity", "1");
-			d3.selectAll(".mouse-per-line text")
-			  .style("opacity", "1");
-		  })
-		  .on('mousemove', function() { // mouse moving over canvas
-			var mouse = d3.mouse(this);
-			d3.select(".mouse-line")
-			  .attr("d", function() {
-				var d = "M" + mouse[0] + "," + height;
-				d += " " + mouse[0] + "," + 0;
-				return d;
-			  });
-
-			d3.selectAll(".mouse-per-line")
-			  .attr("transform", function(d, i) {
-				console.log(width/mouse[0])
-				var xDate = x.invert(mouse[0]),
-					bisect = d3.bisector(function(d) { return d.date; }).right;
-					idx = bisect(d.values, xDate);
-				
-				var beginning = 0,
-					end = lines[i].getTotalLength(),
-					target = null;
-
-				while (true){
-				  target = Math.floor((beginning + end) / 2);
-				  pos = lines[i].getPointAtLength(target);
-				  if ((target === end || target === beginning) && pos.x !== mouse[0]) {
-					  break;
-				  }
-				  if (pos.x > mouse[0])      end = target;
-				  else if (pos.x < mouse[0]) beginning = target;
-				  else break; //position found
-				}
-				
-				d3.select(this).select('text')
-				  .text(y.invert(pos.y).toFixed(2));
-				  
-				return "translate(" + mouse[0] + "," + pos.y +")";
-			  });
-		  });
-
-			  
-	  
-
-	  // You can print the companies data to the console and take a look.
-	  console.log(companies);
-
-
-	  x.domain(d3.extent(data, function(d) { return d.date; }));
-
-
-	  // To get our Y domain, we'll take the min/max of each price for each company object in the companies array
-	  // and then take the final min/max of all those mins/maxs.
-	  y.domain([
-	    d3.min(companies, function(company) { return d3.min(company.values, function(value) { return value.price; }); }),
-	    d3.max(companies, function(company) { return d3.max(company.values, function(value) { return value.price; }); })
-	  ]);
-
-	  // Update our zero axis.
-	  svg.select(".zeroAxis")
-	  	.transition().duration(1000)
-	  	.attr({
-	  		x1:0,
-	  		x2:width,
-	  		y1:y(0),
-	  		y2:y(0)
-	  	});
-
-
-	  // Company lines
-
-	  // JOIN
-	  var company = svg.selectAll(".company")
-	      .data(companies);
-
-	  // ENTER
-	  company.enter().append("path")
-	      .attr("class", "company line")
-	      .style("stroke", function(d) { return color(d.name); });
-
-	  // UPDATE
-	  company
-	  	  .transition().duration(1000)
-	      .attr("d", function(d) { return line(d.values); });
-
-
-	  // EXIT ??? Nope, won't need it. We'll always be dealing with the same lines. No need
-	  // to remove anything.
-
-
-	  // D3 makes updating our axes REALLY easy. All we do is select the axis and call them again.
-	  svg.select(".x.axis")
-	  	  .transition().duration(1000)
-	      .call(xAxis);
-	  svg.select(".y.axis")
-	  	  .transition().duration(1000)
-	      .call(yAxis);
-
-
-
-	  //Technically we don't need to follow the update pattern for our labels in this chart
-	  // since we know what two companies are in our data. But we'll do it anyway, that way
-	  // we can easily reuse this chart for any two other companies!
-	  var labels = svg.selectAll(".labels")
-	  		// Data is the array of headers in our CSV, excluding the date column.
-	  		// Helpfully, we already have that array. It's our color domain!
-	 		.data(color.domain());
-
-	 	labels.enter()
-	 		.append("g")
-	 		.attr("class", "labels");
-	 	
-	 	labels.append("rect")
-	 		.attr({
-	 			fill: function(d){return color(d);},
-	 			height: 20,
-	 			width: 42,
-	 			// A little math to automatically place our labeling.
-	 			// Remember, "i" is the index number of the data element "d".
-	 			// We can use it to space our labels! 
-	 			x: function(d, i){return width - 23 - (42 * i) ;},
-	 			y: -10
-	 		});
-
-	 	labels.append("text")
-	 		.text(function(d){return d;})
-	 		.attr({
-	 			x: function(d, i){return width - 20 - (42 * i) ;},
-	 			y: 5,
-	 		});
+		d3.csv(dataFile, function(error, data) {
+			data.forEach(function(d) {
+				d.date = parseDate(d.date);
+			});
+		  var cutoffDate = new Date(2019,3,2);	  
+		  cutoffDate.setDate(cutoffDate.getDate() - 7);
+		  data_1w = data.filter(function(d) {return d.date > cutoffDate;})
+		  cutoffDate = new Date(2019,3,2);
+		  cutoffDate.setDate(cutoffDate.getDate() - 30);
+		  data_1m = data.filter(function(d) {return d.date > cutoffDate;})
+		  cutoffDate = new Date(2019,3,2);
+		  cutoffDate.setDate(cutoffDate.getDate() - 90);
+		  data_3m = data.filter(function(d) {return d.date > cutoffDate;})
+		  cutoffDate = new Date(2019,3,2);
+		  cutoffDate.setDate(cutoffDate.getDate() - 180);
+		  data_6m = data.filter(function(d) {return d.date > cutoffDate;})
+		  cutoffDate = new Date(2019,3,2);
+		  cutoffDate.setDate(cutoffDate.getDate() - 270);
+		  data_9m = data.filter(function(d) {return d.date > cutoffDate;})
+		  cutoffDate = new Date(2019,3,2);
+		  cutoffDate.setDate(cutoffDate.getDate() - 360);
+		  data_1y = data.filter(function(d) {return d.date > cutoffDate;})
 			
+			var all_data = [
+			{ 'name': '1 week', 'data': data_1w},
+			{ 'name': '1 month', 'data': data_1m},
+			{ 'name': '3 month', 'data': data_3m},
+			{ 'name': '6 month', 'data': data_6m},
+			{ 'name': '9 month', 'data': data_9m},
+			{ 'name': '1 year', 'data': data_1y}
+			];
 
-	  }
-	
-	data = data_1y;
-    updateChart();
+		  d3.select('.button-area').selectAll('.app-button')
+			.data(all_data)
+			.enter().append('button')
+			.attr('class', 'app-button')
+			.html(function(d) { return d.name; })
+			.on('click', function(d) {
+			  data = d.data;
+			  updateChart();
+			});
+			
+		  function updateChart(){
+			  
+
+		  // Our color scale domain is going to be the values in the header row of our CSV,
+		  // excluding the "date" column.
+		  
+		  color.domain( arr );
+
+
+		  // Since we'll have multiple companies in our data, we need to create a data array 
+		  // that has multiple objects, one for AHC and one for NWS. We'll use javascript's map
+		  // function to relate all the price and date data to their respective companies.
+		  var companies = color.domain().map(function(name) {
+			return {
+			  name: name,
+			  values: data.map(function(d) {
+				return {date: d.date, price: +d[name]};
+			  })
+			};
+		  });
+		  
+		  var mouseG = svg.append("g")
+			  .attr("class", "mouse-over-effects");
+
+			mouseG.append("path") // this is the black vertical line to follow mouse
+			  .attr("class", "mouse-line")
+			  .style("stroke", "black")
+			  .style("stroke-width", "1px")
+			  .style("opacity", "0");
+			  
+			var lines = document.getElementsByClassName('line');
+
+			var mousePerLine = mouseG.selectAll('.mouse-per-line')
+			  .data(companies)
+			  .enter()
+			  .append("g")
+			  .attr("class", "mouse-per-line");
+
+			mousePerLine.append("circle")
+			  .attr("r", 7)
+			  .style("stroke", function(d) {
+				return color(d.name);
+			  })
+			  .style("fill", "none")
+			  .style("stroke-width", "1px")
+			  .style("opacity", "0");
+
+			mousePerLine.append("text")
+			  .attr("transform", "translate(10,3)");
+
+			mouseG.append('svg:rect') // append a rect to catch mouse movements on canvas
+			  .attr('width', width) // can't catch mouse events on a g element
+			  .attr('height', height)
+			  .attr('fill', 'none')
+			  .attr('pointer-events', 'all')
+			  .on('mouseout', function() { // on mouse out hide line, circles and text
+				d3.select(".mouse-line")
+				  .style("opacity", "0");
+				d3.selectAll(".mouse-per-line circle")
+				  .style("opacity", "0");
+				d3.selectAll(".mouse-per-line text")
+				  .style("opacity", "0");
+			  })
+			  .on('mouseover', function() { // on mouse in show line, circles and text
+				d3.select(".mouse-line")
+				  .style("opacity", "1");
+				d3.selectAll(".mouse-per-line circle")
+				  .style("opacity", "1");
+				d3.selectAll(".mouse-per-line text")
+				  .style("opacity", "1");
+			  })
+			  .on('mousemove', function() { // mouse moving over canvas
+				var mouse = d3.mouse(this);
+				d3.select(".mouse-line")
+				  .attr("d", function() {
+					var d = "M" + mouse[0] + "," + height;
+					d += " " + mouse[0] + "," + 0;
+					return d;
+				  });
+
+				d3.selectAll(".mouse-per-line")
+				  .attr("transform", function(d, i) {
+					console.log(width/mouse[0])
+					var xDate = x.invert(mouse[0]),
+						bisect = d3.bisector(function(d) { return d.date; }).right;
+						idx = bisect(d.values, xDate);
+					
+					var beginning = 0,
+						end = lines[i].getTotalLength(),
+						target = null;
+
+					while (true){
+					  target = Math.floor((beginning + end) / 2);
+					  pos = lines[i].getPointAtLength(target);
+					  if ((target === end || target === beginning) && pos.x !== mouse[0]) {
+						  break;
+					  }
+					  if (pos.x > mouse[0])      end = target;
+					  else if (pos.x < mouse[0]) beginning = target;
+					  else break; //position found
+					}
+					
+					d3.select(this).select('text')
+					  .text(y.invert(pos.y).toFixed(2));
+					  
+					return "translate(" + mouse[0] + "," + pos.y +")";
+				  });
+			  });
+
+				  
+		  
+
+		  // You can print the companies data to the console and take a look.
+		  console.log(companies);
+
+
+		  x.domain(d3.extent(data, function(d) { return d.date; }));
+
+
+		  // To get our Y domain, we'll take the min/max of each price for each company object in the companies array
+		  // and then take the final min/max of all those mins/maxs.
+		  y.domain([
+			d3.min(companies, function(company) { return d3.min(company.values, function(value) { return value.price; }); }),
+			d3.max(companies, function(company) { return d3.max(company.values, function(value) { return value.price; }); })
+		  ]);
+
+		  // Update our zero axis.
+		  svg.select(".zeroAxis")
+			.transition().duration(1000)
+			.attr({
+				x1:0,
+				x2:width,
+				y1:y(0),
+				y2:y(0)
+			});
+
+
+		  // Company lines
+
+		  // JOIN
+		  var company = svg.selectAll(".company")
+			  .data(companies);
+
+		  // ENTER
+		  company.enter().append("path")
+			  .attr("class", "company line")
+			  .style("stroke", function(d) { return color(d.name); });
+
+		  // UPDATE
+		  company
+			  .transition().duration(1000)
+			  .attr("d", function(d) { return line(d.values); });
+
+
+		  // EXIT ??? Nope, won't need it. We'll always be dealing with the same lines. No need
+		  // to remove anything.
+
+
+		  // D3 makes updating our axes REALLY easy. All we do is select the axis and call them again.
+		  svg.select(".x.axis")
+			  .transition().duration(1000)
+			  .call(xAxis);
+		  svg.select(".y.axis")
+			  .transition().duration(1000)
+			  .call(yAxis);
+
+
+
+		  //Technically we don't need to follow the update pattern for our labels in this chart
+		  // since we know what two companies are in our data. But we'll do it anyway, that way
+		  // we can easily reuse this chart for any two other companies!
+		  var labels = svg.selectAll(".labels")
+				// Data is the array of headers in our CSV, excluding the date column.
+				// Helpfully, we already have that array. It's our color domain!
+				.data(color.domain());
+
+			labels.enter()
+				.append("g")
+				.attr("class", "labels");
+			
+			labels.append("rect")
+				.attr({
+					fill: function(d){return color(d);},
+					height: 20,
+					width: 42,
+					// A little math to automatically place our labeling.
+					// Remember, "i" is the index number of the data element "d".
+					// We can use it to space our labels! 
+					x: function(d, i){return width - 23 - (42 * i) ;},
+					y: -10
+				});
+
+			labels.append("text")
+				.text(function(d){return d;})
+				.attr({
+					x: function(d, i){return width - 20 - (42 * i) ;},
+					y: 5,
+				});
+				
+
+		  }
+		
+		data = data_1y;
+		updateChart();
+		});
+	}
+
+
+	// Draw the chart when the page loads.
+	draw("stock_data.csv","$");
+
+	// Bind the draw function to our two buttons with the correct arguments.
+	$("#priceBtn").click(function(){ 
+		draw("stock_data.csv", "$" ); 
+	});
+	$("#changeBtn").click(function(){ 
+		draw("pct_change.csv", "+%" ); 
 	});
 }
-
-
-// Draw the chart when the page loads.
-draw("stock_data.csv","$");
-
-// Bind the draw function to our two buttons with the correct arguments.
-$("#priceBtn").click(function(){ 
-	draw("stock_data.csv", "$" ); 
-});
-$("#changeBtn").click(function(){ 
-	draw("pct_change.csv", "+%" ); 
-});
