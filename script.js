@@ -379,13 +379,13 @@ function changer( arr ){
 
 
 	// Draw the chart when the page loads.
-	draw("stock_data.csv","$");
+	draw("stockdata.csv","$");
 
 	// Bind the draw function to our two buttons with the correct arguments.
 	$("#priceBtn").click(function(){ 
-		draw("stock_data.csv", "$" ); 
+		draw("stockdata.csv", "$" ); 
 	});
 	$("#changeBtn").click(function(){ 
-		draw("pct_change.csv", "+%" ); 
+		draw("pctchange.csv", "+%" ); 
 	});
 }
