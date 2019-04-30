@@ -1,4 +1,5 @@
 d3.selectAll(".hardware-label").on("change", saveHard);
+saveHard();
 function saveHard() {
 	var checkArrHardware = [];
 	d3.selectAll(".hardware-label").each(function(d) {
