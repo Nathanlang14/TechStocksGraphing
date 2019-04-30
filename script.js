@@ -1,5 +1,4 @@
 d3.selectAll(".hardware-label").on("change", saveHard);
-var hard;
 function saveHard() {
 	var checkArrHardware = [];
 	d3.selectAll(".hardware-label").each(function(d) {
@@ -8,11 +7,10 @@ function saveHard() {
 			checkArrHardware.push(cb.property("value"));		
 		}
 	});
-	hard = checkArrHardware;
+	working(checkArrHardware);
 	return checkArrHardware;
 }	
 d3.selectAll(".soft-label").on("change", saveSoft);
-var soft = saveSoft();
 function saveSoft() {
 	var checkArrSoftware = [];
 	d3.selectAll(".soft-label").each(function(d) {
@@ -24,7 +22,6 @@ function saveSoft() {
 	return checkArrSoftware;
 }
 d3.selectAll(".bigdata-label").on("change", saveBig);
-var big = saveBig();
 function saveBig() {
 	var checkArrBigdata = [];
 	d3.selectAll(".bigdata-label").each(function(d) {
@@ -37,9 +34,9 @@ function saveBig() {
 	return checkArrBigdata;
 }
 
-console.log(hard);
-console.log(soft);
-console.log(big);
+function working(arr){
+	console.log(arr);
+}
 
 var margin = {top: 20, right: 20, bottom: 35, left: 50},
 width = 900 - margin.left - margin.right,
