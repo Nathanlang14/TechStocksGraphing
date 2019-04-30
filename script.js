@@ -127,9 +127,6 @@ function initializeGraph(){
 function changer( arr ){
 	console.log(arr);
 	function draw(dataFile, axisFormat){
-
-		yAxis.tickFormat(d3.format(axisFormat));
-		
 		
 		d3.csv(dataFile, function(error, data) {
 			data.forEach(function(d) {
@@ -138,6 +135,7 @@ function changer( arr ){
 			
 			
 		initializeGraph();
+		yAxis.tickFormat(d3.format(axisFormat));
 			
 		  var cutoffDate = new Date(2019,3,2);	  
 		  cutoffDate.setDate(cutoffDate.getDate() - 7);
