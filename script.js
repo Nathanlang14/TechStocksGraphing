@@ -45,12 +45,10 @@ function saveBig() {
 function changer( arr ){
 	console.log(arr);
 	function draw(dataFile, axisFormat){
-		console.log("1a");
 		d3.csv(dataFile, function(error, data) {
-			console.log("2a");
 			data.forEach(function(d) {
-				console.log("3a");
 				d.date = d3.time.format("%Y-%m-%d").parse(d.date);
+				console.log("testin");
 			});
 			
 			
