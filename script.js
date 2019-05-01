@@ -312,6 +312,8 @@ function changer( arr ){
 		  // JOIN
 		  var company = svg.selectAll(".company")
 			  .data(companies);
+			  
+			  company.exit().remove();
 
 		  // ENTER
 		  company.enter().append("path")
