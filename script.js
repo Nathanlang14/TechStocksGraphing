@@ -375,8 +375,8 @@ function changer( arr ){
 
 		  }
 		
-		data = data_1y;
-		updateChart();
+		//data = data_1y;
+		//updateChart();
 		});
 	}
 
