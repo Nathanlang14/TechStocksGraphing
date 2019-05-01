@@ -165,11 +165,14 @@ function changer( arr ){
 			.html(function(d) { return d.name; })
 			.on('click', function(d) {
 			  data = d.data;
+			  console.log("H");
 			  console.log(data);
 			  updateChart();
 			});
 			
 		  function updateChart(){
+			  console.log("I");
+			  console.log(data);
 			  
 
 		  // Our color scale domain is going to be the values in the header row of our CSV,
