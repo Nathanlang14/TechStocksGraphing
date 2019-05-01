@@ -376,7 +376,7 @@ function changer( arr ){
 		  }
 		
 		//data = data_1y;
-		//updateChart();
+		updateChart();
 		});
 	}
 
