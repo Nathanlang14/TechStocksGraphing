@@ -200,7 +200,6 @@ function changer( arr ){
 			  .style("opacity", "0");
 			  
 			var lines = document.getElementsByClassName('line');
-			console.log(lines);
 
 			var mousePerLine = mouseG.selectAll('.mouse-per-line')
 			  .data(companies)
@@ -312,6 +311,10 @@ function changer( arr ){
 		  // JOIN
 		  var company = svg.selectAll(".company")
 			  .data(companies);
+			  .exit.remove();
+			  
+		  console.log("Comp");
+		  console.log(company);
 			  
 
 		  // ENTER
