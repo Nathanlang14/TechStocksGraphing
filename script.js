@@ -84,8 +84,6 @@ var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left");
 
-var color = d3.scale.category10();
-
 var line = d3.svg.line()
 	.interpolate("cardinal") 
     .x(function(d) { return x(d.date); })
@@ -175,7 +173,7 @@ function changer( arr ){
 
 		  // Our color scale domain is going to be the values in the header row of our CSV,
 		  // excluding the "date" column.
-		  
+		  var color = d3.scale.category10();
 		  color.domain( arr );
 
 
