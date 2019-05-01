@@ -130,6 +130,8 @@ function changer( arr ){
 			data.forEach(function(d) {
 				d.date = parseDate(d.date);
 			});
+		
+			console.log(data);
 		  var cutoffDate = new Date(2019,3,2);	  
 		  cutoffDate.setDate(cutoffDate.getDate() - 7);
 		  data_1w = data.filter(function(d) {return d.date > cutoffDate;})
