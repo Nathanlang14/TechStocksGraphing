@@ -310,7 +310,7 @@ function changer( arr ){
 
 		  // JOIN
 		  var company = svg.selectAll(".company")
-			  .data(companies);
+			  .data(companies)
 			  .exit().remove();
 			  
 		  console.log("Comp");
