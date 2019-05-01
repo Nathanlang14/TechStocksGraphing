@@ -36,6 +36,85 @@ function saveBig() {
 	return checkArrBigdata;
 }
 
+var margin = {top: 20, right: 20, bottom: 35, left: 50},
+width = 900 - margin.left - margin.right,
+height = 500 - margin.top - margin.bottom;
+
+var parseDate = d3.time.format("%Y-%m-%d").parse;
+
+var x = d3.time.scale()
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+	
+var formatMillisecond = d3.time.format(".%L"),
+    formatSecond = d3.time.format(":%S"),
+    formatMinute = d3.time.format("%I:%M"),
+    formatHour = d3.time.format("%I %p"),
+    formatDay = d3.time.format("%a %d"),
+    formatWeek = d3.time.format("%b %d"),
+    formatMonth = d3.time.format("%B"),
+    formatYear = d3.time.format("%Y");
+
+// Define filter conditions
+function multiFormat(date) {
+  return (d3.time.second(date) < date ? formatMillisecond
+    : d3.time.minute(date) < date ? formatSecond
+    : d3.time.hour(date) < date ? formatMinute
+    : d3.time.day(date) < date ? formatHour
+    : d3.time.month(date) < date ? (d3.time.week(date) < date ? formatDay : formatWeek)
+    : d3.time.year(date) < date ? formatMonth
+    : formatYear)(date);
+}
+
+
+var xAxisFormat = d3.time.format.multi([
+  ["%b.", function(d) { return d.getMonth(); }],
+  ["%Y", function() { return true; }]
+]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    //.tickFormat( xAxisFormat )
+	.tickFormat(multiFormat)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+var color = d3.scale.category10();
+
+var line = d3.svg.line()
+	.interpolate("cardinal") 
+    .x(function(d) { return x(d.date); })
+    .y(function(d) { return y(d.price); });
+
+var svg = d3.select("#chart").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+	.append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg.append("g")
+	  .attr("class", "x axis")
+	  .attr("transform", "translate(0," + height + ")");
+
+svg.append("g")
+	  .attr("class", "y axis");
+
+svg.append("line")
+	.attr("class","zeroAxis");
+
+svg.append("text")
+	.text("SOURCE: Yahoo! Finance")
+	.attr({
+		class: "source",
+		x:0,
+		y:height + 30
+	});
+
 // Whenever we want to make a d3 chart update with new data, we need to put the
 // elements of our chart that are going to change with the new data into a function.
 // That way we can simply call it to redraw these elements.
@@ -43,18 +122,16 @@ function saveBig() {
 // our data.
 
 function changer( arr ){
-	console.log(arr);
+
 	function draw(dataFile, axisFormat){
+
+		yAxis.tickFormat(d3.format(axisFormat));
+		
+		
 		d3.csv(dataFile, function(error, data) {
 			data.forEach(function(d) {
-				d.date = d3.time.format("%Y-%m-%d").parse(d.date);
-				console.log("testin");
+				d.date = parseDate(d.date);
 			});
-			
-			
-		initializeGraph();
-		yAxis.tickFormat(d3.format(axisFormat));
-			
 		  var cutoffDate = new Date(2019,3,2);	  
 		  cutoffDate.setDate(cutoffDate.getDate() - 7);
 		  data_1w = data.filter(function(d) {return d.date > cutoffDate;})
@@ -311,84 +388,4 @@ function changer( arr ){
 	$("#changeBtn").click(function(){ 
 		draw("pctchange.csv", "+%" ); 
 	});
-}
-
-function initializeGraph(){
-	var margin = {top: 20, right: 20, bottom: 35, left: 50},
-	width = 900 - margin.left - margin.right,
-	height = 500 - margin.top - margin.bottom;
-
-	var x = d3.time.scale()
-		.range([0, width]);
-
-	var y = d3.scale.linear()
-		.range([height, 0]);
-		
-	var formatMillisecond = d3.time.format(".%L"),
-		formatSecond = d3.time.format(":%S"),
-		formatMinute = d3.time.format("%I:%M"),
-		formatHour = d3.time.format("%I %p"),
-		formatDay = d3.time.format("%a %d"),
-		formatWeek = d3.time.format("%b %d"),
-		formatMonth = d3.time.format("%B"),
-		formatYear = d3.time.format("%Y");
-
-	// Define filter conditions
-	function multiFormat(date) {
-	  return (d3.time.second(date) < date ? formatMillisecond
-		: d3.time.minute(date) < date ? formatSecond
-		: d3.time.hour(date) < date ? formatMinute
-		: d3.time.day(date) < date ? formatHour
-		: d3.time.month(date) < date ? (d3.time.week(date) < date ? formatDay : formatWeek)
-		: d3.time.year(date) < date ? formatMonth
-		: formatYear)(date);
-	}
-
-
-	var xAxisFormat = d3.time.format.multi([
-	  ["%b.", function(d) { return d.getMonth(); }],
-	  ["%Y", function() { return true; }]
-	]);
-
-	var xAxis = d3.svg.axis()
-		.scale(x)
-		//.tickFormat( xAxisFormat )
-		.tickFormat(multiFormat)
-		.orient("bottom");
-
-	var yAxis = d3.svg.axis()
-		.scale(y)
-		.orient("left");
-
-	var color = d3.scale.category10();
-
-	var line = d3.svg.line()
-		.interpolate("cardinal") 
-		.x(function(d) { return x(d.date); })
-		.y(function(d) { return y(d.price); });
-
-	var svg = d3.select("#chart").append("svg")
-		.attr("width", width + margin.left + margin.right)
-		.attr("height", height + margin.top + margin.bottom)
-		.append("g")
-		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-	svg.append("g")
-		  .attr("class", "x axis")
-		  .attr("transform", "translate(0," + height + ")");
-
-	svg.append("g")
-		  .attr("class", "y axis");
-
-	svg.append("line")
-		.attr("class","zeroAxis");
-
-	svg.append("text")
-		.text("SOURCE: Yahoo! Finance")
-		.attr({
-			class: "source",
-			x:0,
-			y:height + 30
-		});
-		
 }
