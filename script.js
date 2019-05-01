@@ -76,7 +76,6 @@ var xAxisFormat = d3.time.format.multi([
 
 var xAxis = d3.svg.axis()
     .scale(x)
-    //.tickFormat( xAxisFormat )
 	.tickFormat(multiFormat)
     .orient("bottom");
 
@@ -130,8 +129,7 @@ function changer( arr ){
 			data.forEach(function(d) {
 				d.date = parseDate(d.date);
 			});
-		
-			console.log(data);
+			
 		  var cutoffDate = new Date(2019,3,2);	  
 		  cutoffDate.setDate(cutoffDate.getDate() - 7);
 		  data_1w = data.filter(function(d) {return d.date > cutoffDate;})
@@ -167,6 +165,7 @@ function changer( arr ){
 			.html(function(d) { return d.name; })
 			.on('click', function(d) {
 			  data = d.data;
+			  console.log(data);
 			  updateChart();
 			});
 			
@@ -201,6 +200,7 @@ function changer( arr ){
 			  .style("opacity", "0");
 			  
 			var lines = document.getElementsByClassName('line');
+			console.log(lines);
 
 			var mousePerLine = mouseG.selectAll('.mouse-per-line')
 			  .data(companies)
@@ -375,7 +375,7 @@ function changer( arr ){
 
 		  }
 		
-		//data = data_1y;
+		data = data_1y;
 		updateChart();
 		});
 	}
