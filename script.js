@@ -165,6 +165,9 @@ function changer( arr ){
 			.html(function(d) { return d.name; })
 			.on('click', function(d) {
 			  data = d.data;
+			  arr = arr;
+			  console.log("HI");
+			  console.log(arr);
 			  updateChart();
 			});
 			
