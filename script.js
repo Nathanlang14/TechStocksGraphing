@@ -173,7 +173,8 @@ function changer( arr ){
 				console.log(arr);
 			  data = d.data;
 			  updateChart(data,arr);
-			});
+			})
+			.exit().remove();
 			
 		  function updateChart(data,arr){			  
 
