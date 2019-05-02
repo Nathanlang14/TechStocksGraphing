@@ -169,10 +169,10 @@ function changer( arr ){
 				console.log("Diff");
 				console.log(arr);
 			  data = d.data;
-			  updateChart(data);
+			  updateChart(data,arr);
 			});
 			
-		  function updateChart(data){			  
+		  function updateChart(data,arr){			  
 
 		  // Our color scale domain is going to be the values in the header row of our CSV,
 		  // excluding the "date" column.
@@ -378,7 +378,7 @@ function changer( arr ){
 				console.log(arr);
 		  }
 		
-		updateChart(data_1y);
+		updateChart(data_1y, arr);
 		});
 	}
 
