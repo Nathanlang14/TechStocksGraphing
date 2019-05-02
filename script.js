@@ -157,6 +157,8 @@ function changer( arr ){
 			{ 'name': '9 month', 'data': data_9m},
 			{ 'name': '1 year', 'data': data_1y}
 			];
+			console.log("a");
+			console.log(arr);
 			
 		  d3.select('.button-area').selectAll('.app-button')
 			.data(all_data)
@@ -164,7 +166,7 @@ function changer( arr ){
 			.attr('class', 'app-button')
 			.html(function(d) { return d.name; })
 			.on('click', function(d) {
-				console.log("HI");
+				console.log("b");
 				console.log(arr);
 			  data = d.data;
 			  updateChart();
