@@ -165,17 +165,13 @@ function changer( arr ){
 			.enter().append('button')
 			.attr('class', 'app-button')
 			.html(function(d) { 
-			  console.log("HI");
-			  console.log(d.name);
 			  return d.name; })
 			.on('click', function(d) {
-				console.log("Diff");
-				console.log(arr);
+				console.log(d);
+				console.log(d.date);
 			  data = d.data;
 			  updateChart(data,arr);
 			});
-			
-			buttons.exit().remove();
 			
 		  function updateChart(data,arr){			  
 
@@ -383,6 +379,7 @@ function changer( arr ){
 				console.log(arr);
 		  }
 		
+		buttons.exit().remove();
 		updateChart(data_1y, arr);
 		});
 	}
@@ -398,4 +395,8 @@ function changer( arr ){
 	$("#changeBtn").click(function(){ 
 		draw("pctchange.csv", "+%" ); 
 	});
+	
+	
+	
+	
 }
