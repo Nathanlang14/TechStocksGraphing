@@ -164,20 +164,17 @@ function changer( arr ){
 			.attr('class', 'app-button')
 			.html(function(d) { return d.name; })
 			.on('click', function(d) {
+				console.log("HI");
+				console.log(arr);
 			  data = d.data;
 			  updateChart();
 			});
-			
-			
-			  console.log("HI");
-			  console.log(arr);
 			
 		  function updateChart(){			  
 
 		  // Our color scale domain is going to be the values in the header row of our CSV,
 		  // excluding the "date" column.
-		  console.log("Arg");
-		  console.log(arr);
+		  
 		  var color = d3.scale.category10();
 		  color.domain( arr );
 
@@ -327,7 +324,7 @@ function changer( arr ){
 			  .transition().duration(1000)
 			  .attr("d", function(d) { return line(d.values); });
 			  
-		  //company.exit().remove();
+		  company.exit().remove();
 
 
 		  // EXIT ??? Nope, won't need it. We'll always be dealing with the same lines. No need
