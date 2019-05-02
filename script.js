@@ -165,18 +165,14 @@ function changer( arr ){
 			.html(function(d) { return d.name; })
 			.on('click', function(d) {
 			  data = d.data;
-			  console.log("H");
-			  console.log(data);
 			  updateChart();
 			});
 			
-		  function updateChart(){
-			  console.log("I");
-			  console.log(data);
-			  
+		  function updateChart(){			  
 
 		  // Our color scale domain is going to be the values in the header row of our CSV,
 		  // excluding the "date" column.
+			  console.log(arr);
 		  var color = d3.scale.category10();
 		  color.domain( arr );
 
