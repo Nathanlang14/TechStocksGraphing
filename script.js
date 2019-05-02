@@ -160,7 +160,7 @@ function changer( arr ){
 			console.log("1");
 			console.log(arr);
 			
-		  d3.select('.button-area').selectAll('.app-button')
+		  var buttons = d3.select('.button-area').selectAll('.app-button')
 			.data(all_data)
 			.enter().append('button')
 			.attr('class', 'app-button')
@@ -173,8 +173,7 @@ function changer( arr ){
 				console.log(arr);
 			  data = d.data;
 			  updateChart(data,arr);
-			})
-			.exit().remove();
+			});
 			
 		  function updateChart(data,arr){			  
 
