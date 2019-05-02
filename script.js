@@ -172,7 +172,8 @@ function changer( arr ){
 
 		  // Our color scale domain is going to be the values in the header row of our CSV,
 		  // excluding the "date" column.
-			  console.log(arr);
+		  console.log("Arg");
+		  console.log(arr);
 		  var color = d3.scale.category10();
 		  color.domain( arr );
 
@@ -281,7 +282,7 @@ function changer( arr ){
 		  
 
 		  // You can print the companies data to the console and take a look.
-		  console.log(companies);
+		  // console.log(companies);
 
 
 		  x.domain(d3.extent(data, function(d) { return d.date; }));
@@ -310,9 +311,6 @@ function changer( arr ){
 		  // JOIN
 		  var company = svg.selectAll(".company")
 			  .data(companies);
-			  
-		  console.log("Comp");
-		  console.log(company);
 			  
 
 		  // ENTER
