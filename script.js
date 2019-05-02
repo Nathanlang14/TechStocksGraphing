@@ -162,13 +162,11 @@ function changer( arr ){
 			
 		  d3.select('.button-area').selectAll('.app-button')
 			.data(all_data)
-			//.enter().append('button')
+			.enter().append('button')
 			.append('button')
 			.attr('class', 'app-button')
 			.html(function(d) { return d.name; })
 			.on('click', function(d) {
-				console.log("b");
-				console.log(arr);
 			  data = d.data;
 			  updateChart();
 			});
