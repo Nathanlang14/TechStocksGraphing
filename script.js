@@ -164,8 +164,11 @@ function changer( arr ){
 			.data(all_data)
 			.enter().append('button')
 			.attr('class', 'app-button')
-			.html(function(d) { return d.name; })
-			.on('click', function(d, arr) {
+			.html(function(d) { 
+			  console.log("HI");
+			  console.log(d.name);
+			  return d.name; })
+			.on('click', function(d) {
 				console.log("Diff");
 				console.log(arr);
 			  data = d.data;
