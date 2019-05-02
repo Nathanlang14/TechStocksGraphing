@@ -175,6 +175,8 @@ function changer( arr ){
 			  updateChart(data,arr);
 			});
 			
+			buttons.exit().remove();
+			
 		  function updateChart(data,arr){			  
 
 		  // Our color scale domain is going to be the values in the header row of our CSV,
