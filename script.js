@@ -379,7 +379,6 @@ function changer( arr ){
 				console.log(arr);
 		  }
 		
-		buttons.exit().remove();
 		updateChart(data_1y, arr);
 		});
 	}
