@@ -327,7 +327,7 @@ function changer( arr ){
 			  .transition().duration(1000)
 			  .attr("d", function(d) { return line(d.values); });
 			  
-		  company.exit().remove();
+		  //company.exit().remove();
 
 
 		  // EXIT ??? Nope, won't need it. We'll always be dealing with the same lines. No need
