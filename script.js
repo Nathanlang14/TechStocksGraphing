@@ -185,7 +185,7 @@ function changer( arr ){
 			console.log("mid2");
 			console.log(buttons);
 					
-			d3.selectAll('.button-area').remove();
+			buttons = d3.selectAll('.button-area').remove();
 			
 			console.log("after");
 			console.log(buttons);
