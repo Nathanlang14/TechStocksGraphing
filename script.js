@@ -9,7 +9,7 @@ function saveHard() {
 	});
 	changer(checkArrHardware);
 	console.log("after1");
-	d3.selectAll('.app-button').remove();
+	//d3.selectAll('.app-button').remove();
 	return checkArrHardware;
 }	
 d3.selectAll(".soft-label").on("change", saveSoft);
@@ -23,7 +23,7 @@ function saveSoft() {
 	});
 	changer(checkArrSoftware);
 	console.log("after2");
-	d3.selectAll('.app-button').remove();
+	//d3.selectAll('.app-button').remove();
 	return checkArrSoftware;
 }
 d3.selectAll(".bigdata-label").on("change", saveBig);
@@ -38,7 +38,7 @@ function saveBig() {
 	});
 	changer(checkArrBigdata);
 	console.log("after3");
-	d3.selectAll('.app-button').remove();
+	//d3.selectAll('.app-button').remove();
 	return checkArrBigdata;
 }
 
@@ -392,12 +392,15 @@ function changer( arr ){
 
 	// Draw the chart when the page loads.
 	draw("stockdata.csv","$");
+	d3.selectAll('.app-button').remove();
 
 	// Bind the draw function to our two buttons with the correct arguments.
 	$("#priceBtn").click(function(){ 
+		d3.selectAll('.app-button').remove();
 		draw("stockdata.csv", "$" ); 
 	});
 	$("#changeBtn").click(function(){ 
+		d3.selectAll('.app-button').remove();
 		draw("pctchange.csv", "+%" ); 
 	});
 	
