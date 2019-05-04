@@ -398,10 +398,12 @@ function changer( arr ){
 	$("#priceBtn").click(function(){ 
 		d3.selectAll('.app-button').remove();
 		draw("stockdata.csv", "$" ); 
+		d3.selectAll('.app-button').remove();
 	});
 	$("#changeBtn").click(function(){ 
 		d3.selectAll('.app-button').remove();
 		draw("pctchange.csv", "+%" ); 
+		d3.selectAll('.app-button').remove();
 	});
 	
 	
