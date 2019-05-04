@@ -380,7 +380,7 @@ function changer( arr ){
 				});
 		  }
 		updateChart(data_1y, arr);
-			buttons = d3.selectAll('.app-button').remove();
+			d3.selectAll('.app-button').remove();
 			
 			console.log("after");
 			console.log(buttons);
