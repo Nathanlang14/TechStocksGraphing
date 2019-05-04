@@ -1,3 +1,4 @@
+var count = 0;
 d3.selectAll(".hardware-label").on("change", saveHard);
 function saveHard() {
 	var checkArrHardware = [];
@@ -8,8 +9,9 @@ function saveHard() {
 		}
 	});
 	d3.selectAll('.app-button').remove();
+	count++;
+	console.log(count);
 	changer(checkArrHardware);
-	console.log("after1");
 	d3.selectAll('.app-button').remove();
 	return checkArrHardware;
 }	
@@ -23,8 +25,9 @@ function saveSoft() {
 		}
 	});
 	d3.selectAll('.app-button').remove();
+	count++;
+	console.log(count);
 	changer(checkArrSoftware);
-	console.log("after2");
 	d3.selectAll('.app-button').remove();
 	return checkArrSoftware;
 }
@@ -39,8 +42,9 @@ function saveBig() {
 		
 	});
 	d3.selectAll('.app-button').remove();
+	count++;
+	console.log(count);
 	changer(checkArrBigdata);
-	console.log("after3");
 	d3.selectAll('.app-button').remove();
 	return checkArrBigdata;
 }
@@ -170,9 +174,6 @@ function changer( arr ){
 			
 			var buttons;
 			
-			console.log("before");
-			console.log(buttons);
-			
 			buttons = d3.select('.button-area')
 				.selectAll(null)
 				.data(all_data);
@@ -183,14 +184,12 @@ function changer( arr ){
 					.html(function(d) { 
 					  return d.name; })
 					.on('click', function(d) {
-						console.log("Check");
-						console.log(arr);
+					  count++;
+					  console.log(count);
 					  nd = d.data;
 					  updateChart(nd,arr);
 					});
-			
-			console.log("mid");
-			console.log(buttons);				
+					
 			
 		  function updateChart(data,arr){			  
 
@@ -301,8 +300,6 @@ function changer( arr ){
 				  });
 			  });
 
-				  
-		  
 
 		  // You can print the companies data to the console and take a look.
 		  // console.log(companies);
@@ -356,11 +353,6 @@ function changer( arr ){
 			  .transition().duration(1000)
 			  .call(yAxis);
 
-
-
-		  //Technically we don't need to follow the update pattern for our labels in this chart
-		  // since we know what two companies are in our data. But we'll do it anyway, that way
-		  // we can easily reuse this chart for any two other companies!
 		  var labels = svg.selectAll(".labels")
 				// Data is the array of headers in our CSV, excluding the date column.
 				// Helpfully, we already have that array. It's our color domain!
@@ -393,7 +385,6 @@ function changer( arr ){
 		});
 	}
 
-
 	// Draw the chart when the page loads.
 	//d3.selectAll('.app-button').remove();
 	draw("stockdata.csv","$");
@@ -401,17 +392,17 @@ function changer( arr ){
 
 	// Bind the draw function to our two buttons with the correct arguments.
 	$("#priceBtn").click(function(){ 
+		count++;
+		console.log(count);
 		d3.selectAll('.app-button').remove();
 		draw("stockdata.csv", "$" ); 
 		
 	});
 	$("#changeBtn").click(function(){ 
+		count++;
+		console.log(count);
 		d3.selectAll('.app-button').remove();
 		draw("pctchange.csv", "+%" ); 
 		
 	});
-	
-	
-	
-	
 }
