@@ -159,6 +159,20 @@ function changer( arr ){
 			];
 			console.log("1");
 			console.log(arr);
+			var temp = arr;
+			
+			var buttons = d3.select('.button-area').selectAll('.app-button')
+			.data(all_data)
+			.enter().append('button')
+			.attr('class', 'app-button')
+			.html(function(d) { 
+			  return d.name; })
+			.on('click', function(d) {
+				console.log("Check");
+				console.log(temp);
+			  data = d.data;
+			  updateChart(data,temp);
+			});
 			
 		  
 			
@@ -359,20 +373,6 @@ function changer( arr ){
 					y: 5,
 				});
 		  }
-		
-		var buttons = d3.select('.button-area').selectAll('.app-button')
-			.data(all_data)
-			.enter().append('button')
-			.attr('class', 'app-button')
-			.html(function(d) { 
-			  return d.name; })
-			.on('click', function(d) {
-				var a = arr;
-				console.log("Check");
-				console.log(a);
-			  data = d.data;
-			  updateChart(data,a);
-			});
 		updateChart(data_1y, arr);
 		});
 	}
@@ -387,5 +387,9 @@ function changer( arr ){
 	});
 	$("#changeBtn").click(function(){ 
 		draw("pctchange.csv", "+%" ); 
-	});	
+	});
+	
+	
+	
+	
 }
