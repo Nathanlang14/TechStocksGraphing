@@ -157,12 +157,18 @@ function changer( arr ){
 			{ 'name': '9 month', 'data': data_9m},
 			{ 'name': '1 year', 'data': data_1y}
 			];
-			console.log("1");
-			console.log(arr);
 			
-			var buttons = d3.select('.button-area')
-							.selectAll(null)
-							.data(all_data)
+			var buttons;
+			
+			console.log("before");
+			console.log(buttons);
+			
+			buttons.d3.select('.button-area')
+				.selectAll(null)
+				.data(all_data);
+			
+			console.log("mid1");
+			console.log(buttons);
 			
 			buttons.enter()
 					.append('button')
@@ -175,8 +181,14 @@ function changer( arr ){
 					  nd = d.data;
 					  updateChart(nd,arr);
 					});
+			
+			console.log("mid2");
+			console.log(buttons);
 					
 			buttons.exit().remove();
+			
+			console.log("after");
+			console.log(buttons);
 						
 			
 		  function updateChart(data,arr){			  
