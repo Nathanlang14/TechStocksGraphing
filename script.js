@@ -157,21 +157,13 @@ function changer( arr ){
 			{ 'name': '9 month', 'data': data_9m},
 			{ 'name': '1 year', 'data': data_1y}
 			];
+			console.log("1");
+			console.log(arr);
 			
-		  function updateChart(data, arr){		
-			console.log("HOLA");
+		  
+			
+		  function updateChart(data,arr){			  
 
-			var buttons = d3.select('.button-area').selectAll('.app-button')
-			.data(all_data)
-			.enter().append('button')
-			.attr('class', 'app-button')
-			.html(function(d) { 
-			  return d.name; })
-			.on('click', function(d) {
-				console.log("HI");
-			  data = d.data;
-			});
-			  console.log("HOLA2");
 		  // Our color scale domain is going to be the values in the header row of our CSV,
 		  // excluding the "date" column.
 		  
@@ -326,11 +318,6 @@ function changer( arr ){
 			  
 		  company.exit().remove();
 
-
-		  // EXIT ??? Nope, won't need it. We'll always be dealing with the same lines. No need
-		  // to remove anything.
-
-
 		  // D3 makes updating our axes REALLY easy. All we do is select the axis and call them again.
 		  svg.select(".x.axis")
 			  .transition().duration(1000)
@@ -371,11 +358,21 @@ function changer( arr ){
 					x: function(d, i){return width - 20 - (42 * i) ;},
 					y: 5,
 				});
-				
-				console.log("2");
-				console.log(arr);
 		  }
 		
+		var buttons = d3.select('.button-area').selectAll('.app-button')
+			.data(all_data)
+			.enter().append('button')
+			.attr('class', 'app-button')
+			.html(function(d) { 
+			  return d.name; })
+			.on('click', function(d) {
+				var a = arr;
+				console.log("Check");
+				console.log(a);
+			  data = d.data;
+			  updateChart(data,a);
+			});
 		updateChart(data_1y, arr);
 		});
 	}
@@ -390,9 +387,5 @@ function changer( arr ){
 	});
 	$("#changeBtn").click(function(){ 
 		draw("pctchange.csv", "+%" ); 
-	});
-	
-	
-	
-	
+	});	
 }
