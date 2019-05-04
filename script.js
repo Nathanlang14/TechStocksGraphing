@@ -88,19 +88,6 @@ var line = d3.svg.line()
     .x(function(d) { return x(d.date); })
     .y(function(d) { return y(d.price); });
 
-var buttons = d3.select('.button-area').selectAll(null)
-			.data(all_data)
-			.enter().append('button')
-			.attr('class', 'app-button')
-			.html(function(d) { 
-			  return d.name; })
-			.on('click', function(d) {
-				console.log("Check");
-				console.log(arr);
-			  nd = d.data;
-			  updateChart(nd,arr);
-			});
-
 var svg = d3.select("#chart").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -179,7 +166,23 @@ function changer( arr ){
 		  // Our color scale domain is going to be the values in the header row of our CSV,
 		  // excluding the "date" column.
 			
+			var buttons = d3.select('.button-area')
+							.selectAll(null)
+							.data(all_data)
 			
+			buttons.enter()
+					.append('button')
+					.attr('class', 'app-button')
+					.html(function(d) { 
+					  return d.name; })
+					.on('click', function(d) {
+						console.log("Check");
+						console.log(arr);
+					  nd = d.data;
+					  updateChart(nd,arr);
+					});
+					
+			buttons.exit().remove();
 		  
 		  var color = d3.scale.category10();
 		  color.domain( arr );
