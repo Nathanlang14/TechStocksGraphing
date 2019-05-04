@@ -163,7 +163,7 @@ function changer( arr ){
 			console.log("before");
 			console.log(buttons);
 			
-			buttons.d3.select('.button-area')
+			buttons = d3.select('.button-area')
 				.selectAll(null)
 				.data(all_data);
 			
