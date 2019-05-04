@@ -391,17 +391,18 @@ function changer( arr ){
 
 
 	// Draw the chart when the page loads.
+	//d3.selectAll('.app-button').remove();
 	draw("stockdata.csv","$");
 	d3.selectAll('.app-button').remove();
 
 	// Bind the draw function to our two buttons with the correct arguments.
 	$("#priceBtn").click(function(){ 
-		d3.selectAll('.button-area').remove();
+		d3.selectAll('.app-button').remove();
 		draw("stockdata.csv", "$" ); 
 		
 	});
 	$("#changeBtn").click(function(){ 
-		d3.selectAll('.button-area').remove();
+		d3.selectAll('.app-button').remove();
 		draw("pctchange.csv", "+%" ); 
 		
 	});
