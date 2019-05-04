@@ -167,9 +167,6 @@ function changer( arr ){
 				.selectAll(null)
 				.data(all_data);
 			
-			console.log("mid1");
-			console.log(buttons);
-			
 			buttons.enter()
 					.append('button')
 					.attr('class', 'app-button')
@@ -182,14 +179,8 @@ function changer( arr ){
 					  updateChart(nd,arr);
 					});
 			
-			console.log("mid2");
-			console.log(buttons);
-					
-			buttons = d3.selectAll('.button-area').remove();
-			
-			console.log("after");
-			console.log(buttons);
-						
+			console.log("mid");
+			console.log(buttons);				
 			
 		  function updateChart(data,arr){			  
 
@@ -389,6 +380,10 @@ function changer( arr ){
 				});
 		  }
 		updateChart(data_1y, arr);
+			buttons = d3.selectAll('.button-area').remove();
+			
+			console.log("after");
+			console.log(buttons);
 		});
 	}
 
