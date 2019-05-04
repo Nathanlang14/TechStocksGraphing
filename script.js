@@ -161,7 +161,7 @@ function changer( arr ){
 			console.log(arr);
 			var temp = arr;
 			
-			var buttons = d3.select('.button-area').selectAll('.app-button')
+			var buttons = d3.select('.button-area').selectAll(null)
 			.data(all_data)
 			.enter().append('button')
 			.attr('class', 'app-button')
