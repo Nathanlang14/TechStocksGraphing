@@ -7,6 +7,7 @@ function saveHard() {
 			checkArrHardware.push(cb.property("value"));		
 		}
 	});
+	d3.selectAll('.app-button').remove();
 	changer(checkArrHardware);
 	console.log("after1");
 	d3.selectAll('.app-button').remove();
@@ -21,6 +22,7 @@ function saveSoft() {
 			checkArrSoftware.push(cb.property("value"));
 		}
 	});
+	d3.selectAll('.app-button').remove();
 	changer(checkArrSoftware);
 	console.log("after2");
 	d3.selectAll('.app-button').remove();
@@ -36,6 +38,7 @@ function saveBig() {
 		}
 		
 	});
+	d3.selectAll('.app-button').remove();
 	changer(checkArrBigdata);
 	console.log("after3");
 	d3.selectAll('.app-button').remove();
