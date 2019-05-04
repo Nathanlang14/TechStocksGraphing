@@ -130,7 +130,8 @@ svg.append("text")
 function changer( arr ){
 
 	function draw(dataFile, axisFormat){
-
+	
+		d3.selectAll('.app-button').remove();
 		yAxis.tickFormat(d3.format(axisFormat));
 		
 		
