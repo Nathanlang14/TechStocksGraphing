@@ -157,24 +157,20 @@ function changer( arr ){
 			{ 'name': '9 month', 'data': data_9m},
 			{ 'name': '1 year', 'data': data_1y}
 			];
-			console.log("1");
-			console.log(arr);
 			
-		  var buttons = d3.select('.button-area').selectAll('.app-button')
+		  function updateChart(data, arr){		
+			console.log("HOLA");
+
+			var buttons = d3.select('.button-area').selectAll('.app-button')
 			.data(all_data)
 			.enter().append('button')
 			.attr('class', 'app-button')
 			.html(function(d) { 
 			  return d.name; })
 			.on('click', function(d) {
-				console.log(d);
-				console.log(d.date);
+				console.log("HI");
 			  data = d.data;
-			  updateChart(data,arr);
 			});
-			
-		  function updateChart(data,arr){			  
-
 		  // Our color scale domain is going to be the values in the header row of our CSV,
 		  // excluding the "date" column.
 		  
