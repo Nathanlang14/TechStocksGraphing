@@ -159,15 +159,9 @@ function changer( arr ){
 			];
 			console.log("1");
 			console.log(arr);
+			
 				
-		  
-			
-		  function updateChart(data,arr){			  
-
-		  // Our color scale domain is going to be the values in the header row of our CSV,
-		  // excluding the "date" column.
-			
-			var buttons = d3.select('.button-area').selectAll('.app-button')
+		 var buttons = d3.select('.button-area').selectAll(null)
 			.data(all_data)
 			.enter().append('button')
 			.attr('class', 'app-button')
@@ -179,6 +173,17 @@ function changer( arr ){
 			  nd = d.data;
 			  updateChart(nd,arr);
 			});
+			console.log("get here");
+			
+			d3.select("buttons").remove();
+			
+			
+		  function updateChart(data,arr){			  
+
+		  // Our color scale domain is going to be the values in the header row of our CSV,
+		  // excluding the "date" column.
+			
+			
 		  
 		  var color = d3.scale.category10();
 		  color.domain( arr );
