@@ -171,6 +171,7 @@ function changer( arr ){
 				console.log("HI");
 			  data = d.data;
 			});
+			  console.log("HOLA2");
 		  // Our color scale domain is going to be the values in the header row of our CSV,
 		  // excluding the "date" column.
 		  
