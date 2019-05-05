@@ -396,17 +396,11 @@ function changer( arr ){
 
 	// Bind the draw function to our two buttons with the correct arguments.
 	$("#priceBtn").click(function(){ 
-		clicks++;
-	document.getElementById("clicks").innerHTML = clicks;
-	console.log(clicks);
 		d3.selectAll('.app-button').remove();
 		draw("stockdata.csv", "$" ); 
 		
 	});
 	$("#changeBtn").click(function(){ 
-		clicks++;
-	document.getElementById("clicks").innerHTML = clicks;
-	console.log(clicks);
 		d3.selectAll('.app-button').remove();
 		draw("pctchange.csv", "+%" ); 
 		
