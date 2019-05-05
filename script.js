@@ -406,3 +406,4 @@ function changer( arr ){
 		
 	});
 }
+document.getElementById("clicks") = count;
