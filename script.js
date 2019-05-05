@@ -1,4 +1,4 @@
-var count = 0;
+var clicks = 0;
 d3.selectAll(".hardware-label").on("change", saveHard);
 function saveHard() {
 	var checkArrHardware = [];
@@ -9,9 +9,9 @@ function saveHard() {
 		}
 	});
 	d3.selectAll('.app-button').remove();
-	count++;
-	document.getElementById("clicks") = count;
-	console.log(count);
+	clicks++;
+	document.getElementById("clicks").innerHTML = clicks;
+	console.log(clicks);
 	changer(checkArrHardware);
 	d3.selectAll('.app-button').remove();
 	return checkArrHardware;
@@ -26,9 +26,9 @@ function saveSoft() {
 		}
 	});
 	d3.selectAll('.app-button').remove();
-	count++;
-	document.getElementById("clicks") = count;
-	console.log(count);
+	clicks++;
+	document.getElementById("clicks").innerHTML = clicks;
+	console.log(clicks);
 	changer(checkArrSoftware);
 	d3.selectAll('.app-button').remove();
 	return checkArrSoftware;
@@ -44,9 +44,9 @@ function saveBig() {
 		
 	});
 	d3.selectAll('.app-button').remove();
-	count++;
-	document.getElementById("clicks") = count;
-	console.log(count);
+	clicks++;
+	document.getElementById("clicks").innerHTML = clicks;
+	console.log(clicks);
 	changer(checkArrBigdata);
 	d3.selectAll('.app-button').remove();
 	return checkArrBigdata;
@@ -187,9 +187,9 @@ function changer( arr ){
 					.html(function(d) { 
 					  return d.name; })
 					.on('click', function(d) {
-					  count++;
-					  document.getElementById("clicks") = count;
-					  console.log(count);
+					  clicks++;
+					document.getElementById("clicks").innerHTML = clicks;
+					console.log(clicks);
 					  nd = d.data;
 					  updateChart(nd,arr);
 					});
@@ -396,17 +396,17 @@ function changer( arr ){
 
 	// Bind the draw function to our two buttons with the correct arguments.
 	$("#priceBtn").click(function(){ 
-		count++;
-		document.getElementById("clicks") = count;
-		console.log(count);
+		clicks++;
+	document.getElementById("clicks").innerHTML = clicks;
+	console.log(clicks);
 		d3.selectAll('.app-button').remove();
 		draw("stockdata.csv", "$" ); 
 		
 	});
 	$("#changeBtn").click(function(){ 
-		count++;
-		document.getElementById("clicks") = count;
-		console.log(count);
+		clicks++;
+	document.getElementById("clicks").innerHTML = clicks;
+	console.log(clicks);
 		d3.selectAll('.app-button').remove();
 		draw("pctchange.csv", "+%" ); 
 		
