@@ -10,6 +10,7 @@ function saveHard() {
 	});
 	d3.selectAll('.app-button').remove();
 	count++;
+	document.getElementById("clicks") = count;
 	console.log(count);
 	changer(checkArrHardware);
 	d3.selectAll('.app-button').remove();
@@ -26,6 +27,7 @@ function saveSoft() {
 	});
 	d3.selectAll('.app-button').remove();
 	count++;
+	document.getElementById("clicks") = count;
 	console.log(count);
 	changer(checkArrSoftware);
 	d3.selectAll('.app-button').remove();
@@ -43,6 +45,7 @@ function saveBig() {
 	});
 	d3.selectAll('.app-button').remove();
 	count++;
+	document.getElementById("clicks") = count;
 	console.log(count);
 	changer(checkArrBigdata);
 	d3.selectAll('.app-button').remove();
@@ -185,6 +188,7 @@ function changer( arr ){
 					  return d.name; })
 					.on('click', function(d) {
 					  count++;
+					  document.getElementById("clicks") = count;
 					  console.log(count);
 					  nd = d.data;
 					  updateChart(nd,arr);
@@ -393,6 +397,7 @@ function changer( arr ){
 	// Bind the draw function to our two buttons with the correct arguments.
 	$("#priceBtn").click(function(){ 
 		count++;
+		document.getElementById("clicks") = count;
 		console.log(count);
 		d3.selectAll('.app-button').remove();
 		draw("stockdata.csv", "$" ); 
@@ -400,10 +405,10 @@ function changer( arr ){
 	});
 	$("#changeBtn").click(function(){ 
 		count++;
+		document.getElementById("clicks") = count;
 		console.log(count);
 		d3.selectAll('.app-button').remove();
 		draw("pctchange.csv", "+%" ); 
 		
 	});
 }
-document.getElementById("clicks") = count;
