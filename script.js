@@ -120,13 +120,6 @@ svg.append("g")
 svg.append("line")
 	.attr("class","zeroAxis");
 
-svg.append("text")
-	.text("SOURCE: Yahoo! Finance")
-	.attr({
-		class: "source",
-		x:0,
-		y:height + 30
-	});
 
 // Whenever we want to make a d3 chart update with new data, we need to put the
 // elements of our chart that are going to change with the new data into a function.
